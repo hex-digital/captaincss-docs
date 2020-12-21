@@ -15,80 +15,70 @@ import { ReactComponent as RefactoringUiCompleteLogo } from '@/img/refactoring-u
 
 const whatsNew = [
   {
-    title: 'Focus Ring Utilities',
-    version: '2.0+',
-    image: require('@/img/docs/focus-ring.svg').ReactComponent,
-    href: '/docs/ring-width',
+    title: 'Stack Object',
+    image: require('@/img/docs/stack-object.svg').ReactComponent,
+    href: '/docs/stack-object',
   },
   {
-    title: 'Dark Mode',
-    version: '2.0+',
-    image: require('@/img/docs/dark-mode.svg').ReactComponent,
-    href: '/docs/dark-mode',
+    title: 'Cluster Object',
+    image: require('@/img/docs/cluster-object.svg').ReactComponent,
+    href: '/docs/cluster-object',
   },
   {
-    title: 'Extended Color Palette',
-    version: '2.0+',
-    image: require('@/img/docs/color-palette.svg').ReactComponent,
-    href: '/docs/customizing-colors#color-palette-reference',
+    title: 'Frame Object',
+    image: require('@/img/docs/frame-object.svg').ReactComponent,
+    href: '/docs/frame-object',
   },
   {
-    title: 'Extend Variants',
-    version: '2.0+',
-    image: require('@/img/docs/extend-variants.svg').ReactComponent,
-    href: '/docs/configuring-variants#enabling-extra-variants',
+    title: 'Wrapper Object',
+    image: require('@/img/docs/wrapper-object.svg').ReactComponent,
+    href: '/docs/wrapper-object',
   },
   {
-    title: 'Extra Wide Breakpoint',
-    version: '2.0+',
-    image: require('@/img/docs/breakpoint.svg').ReactComponent,
-    href: '/docs/breakpoints',
+    title: 'Skip Link',
+    image: require('@/img/docs/skip-link.svg').ReactComponent,
+    href: '/docs/skip-link',
   },
   {
-    title: 'Shareable Presets',
-    image: require('@/img/docs/shareable-presets.svg').ReactComponent,
-    href: '/docs/presets',
+    title: 'Intrinsic Center Utility',
+    image: require('@/img/docs/intrinsic-center.svg').ReactComponent,
+    href: '/docs/intrinsic-center',
   },
   {
-    title: 'Gradients',
+    title: 'Screen Debug',
+    version: 'Soon',
     image: require('@/img/docs/gradients.svg').ReactComponent,
-    href: '/docs/gradient-color-stops',
+    href: '/docs/screen-debug',
   },
   {
-    title: 'Animations',
+    title: 'Config Styleguide',
+    version: 'Soon',
     image: require('@/img/docs/animations.svg').ReactComponent,
-    href: '/docs/animation',
+    href: '/docs/config-styleguide',
   },
 ]
 
 const latestUpdates = [
   {
-    title: 'Tailwind CSS v2.0',
-    date: '2020-11-18T17:45:00.000Z',
-    url: 'https://blog.tailwindcss.com/tailwindcss-v2',
+    title: 'CaptainCSS documentation is released',
+    date: '2020-12-23T09:00:00.000Z',
+    url: 'https://captaincss.hexdigital.com',
     description:
-      "Today we're finally releasing Tailwind CSS v2.0, including an all-new color palette, dark mode support, and tons more!",
+      `We just released the first interation of the CaptainCSS documentation, as a fork of Tailwind's docs repo for maximum familiarity when using them both.`,
   },
   {
-    title: 'Tailwind CSS v1.9.0',
-    date: '2020-10-13T18:30:00.000Z',
-    url: 'https://blog.tailwindcss.com/tailwindcss-1-9',
+    title: 'CaptainCSS v2 released',
+    date: '2020-12-22T09:00:00.000Z',
+    url: 'https://github.com/hex-digital/captaincss/releases',
     description:
-      'We just released Tailwind CSS v1.9 which adds support for configuration presets, useful new CSS grid utilities, extended border radius, rotate, and skew scales, helpful accessibility improvements, and more!',
+      "CaptainCSS is rewritten as a plugin for Tailwind, to coincide with the release of Tailwind v2.",
   },
   {
-    title: 'Introducing Tailwind Play',
-    date: '2020-10-07T13:00:00.000Z',
-    url: 'https://blog.tailwindcss.com/introducing-tailwind-play',
+    title: 'CaptainCSS v1 released',
+    date: '2020-11-11T08:55:00.000Z',
+    url: 'https://github.com/hex-digital/captaincss/releases',
     description:
-      "Today we're excited to release the first version of Tailwind Play, an advanced online playground for Tailwind CSS that lets you use all of Tailwind's build-time features directly in the browser.",
-  },
-  {
-    title: 'Headless UI: Unstyled, Accessible UI Components',
-    date: '2020-10-06T18:30:00.000Z',
-    url: 'https://blog.tailwindcss.com/headless-ui-unstyled-accessible-ui-components',
-    description:
-      'Headless UI is a set of completely unstyled, fully accessible UI components for React, Vue, and Alpine.js that make it easy to build fully accessible custom UI components, without sacrificing the ability to style them from scratch with simple utility classes.',
+      `CaptainCSS launched as a SCSS framework, packaging up the CSS objects and utilities we've been using for over 6 years. The layouts and utilities are tried and tested in hundreds of production websites.`,
   },
 ]
 
@@ -98,102 +88,20 @@ export default function DocsLandingPage() {
   return (
     <div className="px-4 sm:px-6 xl:px-8 pt-10 pb-16">
       <h1 className="text-5xl leading-none font-extrabold text-gray-900 tracking-tight mb-4">
-        Getting started with Tailwind CSS
+        Getting started with CaptainCSS
       </h1>
       <p className="text-2xl tracking-tight mb-10">
-        Learn Tailwind the way that best matches your learning style.
+        An extensible, scalable set of CSS objects and utilities that harness Tailwind and ITCSS to provide structure to teams and large or long-lasting projects.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8">
-        <section className="flex">
-          <div className="w-full relative text-white overflow-hidden rounded-3xl flex shadow-lg">
-            <div className={`w-full flex md:flex-col bg-gradient-to-br ${gradients.violet[0]}`}>
-              <div className="sm:max-w-sm sm:flex-none md:w-auto md:flex-auto flex flex-col items-start relative z-10 p-6 xl:p-8">
-                <h2 className="text-xl font-semibold mb-2 text-shadow">Read the docs</h2>
-                <p className="font-medium text-violet-100 text-shadow mb-4">
-                  Learn how to get Tailwind set up in your project.
-                </p>
-                <Link href="/docs/installation">
-                  <a className="mt-auto bg-violet-800 bg-opacity-50 hover:bg-opacity-75 transition-colors duration-200 rounded-xl font-semibold py-2 px-4 inline-flex">
-                    Start learning
-                  </a>
-                </Link>
-              </div>
-              <div className={`${styles.image} relative md:pl-6 xl:pl-8 hidden sm:block`}>
-                <GuidesImage className="absolute top-6 left-6 md:static overflow-visible" />
-              </div>
-            </div>
-            <div
-              className="absolute bottom-0 left-0 right-0 h-20 hidden sm:block"
-              style={{
-                background: 'linear-gradient(to top, rgb(135, 94, 245), rgba(135, 94, 245, 0))',
-              }}
-            />
-          </div>
-        </section>
-        <section className="flex">
-          <div className="w-full relative text-white overflow-hidden rounded-3xl flex shadow-lg">
-            <div className={`w-full flex md:flex-col bg-gradient-to-br ${gradients.pink[0]}`}>
-              <div className="sm:max-w-sm sm:flex-none md:w-auto md:flex-auto flex flex-col items-start relative z-10 p-6 xl:p-8">
-                <h2 className="text-xl font-semibold mb-2 text-shadow">Try it in the browser</h2>
-                <p className="font-medium text-rose-100 text-shadow mb-4">
-                  Build something with Tailwind in our online playground.
-                </p>
-                <a
-                  href="https://play.tailwindcss.com/"
-                  className="mt-auto bg-rose-900 bg-opacity-50 hover:bg-opacity-75 transition-colors duration-200 rounded-xl font-semibold py-2 px-4 inline-flex"
-                >
-                  Start building
-                </a>
-              </div>
-              <div className={`${styles.image} relative md:pl-6 xl:pl-8 hidden sm:block`}>
-                <PlayImage className="absolute top-6 left-6 md:static overflow-visible" />
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-rose-500 hidden sm:block" />
-          </div>
-        </section>
-        <section className="flex">
-          <div className="w-full relative text-white overflow-hidden rounded-3xl flex shadow-lg">
-            <div className={`w-full flex md:flex-col bg-gradient-to-br ${gradients.amber[0]}`}>
-              <div className="sm:max-w-sm sm:flex-none md:w-auto md:flex-auto flex flex-col items-start relative z-10 p-6 xl:p-8">
-                <h2 className="text-xl font-semibold mb-2 text-shadow">Watch the screencasts</h2>
-                <p className="font-medium text-amber-100 text-shadow mb-4">
-                  Learn more about Tailwind directly from the team on our channel.
-                </p>
-                <Link href="https://www.youtube.com/tailwindlabs">
-                  <a className="mt-auto bg-amber-900 bg-opacity-50 hover:bg-opacity-75 transition-colors duration-200 rounded-xl font-semibold py-2 px-4 inline-flex">
-                    Start watching
-                  </a>
-                </Link>
-              </div>
-              <div className={`${styles.image} relative hidden sm:block`}>
-                <div className="absolute left-2 bottom-3 xl:bottom-5">
-                  <ScreencastsImage className="overflow-visible" />
-                </div>
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-orange-500 hidden sm:block" />
-          </div>
-        </section>
-        <section className="md:col-span-3 flex flex-wrap md:flex-nowrap items-center bg-gray-800 shadow-lg rounded-2xl py-6 md:py-4 px-6 md:pr-5 space-y-4 md:space-y-0 md:space-x-8">
-          <h2 className="flex-none">
-            <span className="sr-only">Tailwind UI</span>
-            <TuiLogo className="w-40 h-auto" />
-          </h2>
-          <p className="flex-auto text-white text-lg font-medium">
-            <Widont>Beautiful UI components, crafted by the creators of Tailwind CSS</Widont>
-          </p>
-          <a
-            href="https://tailwindui.com/components"
-            className="flex-none bg-white hover:bg-gray-100 transition-colors duration-200 text-gray-900 font-semibold rounded-lg py-3 px-4"
-          >
-            Browse components
-          </a>
-        </section>
-      </div>
+      <Link href="/docs/installation">
+        <a className="text-2xl tracking-tight font-semibold inline-flex">
+          Start learning
+        </a>
+      </Link>
+
       <section>
         <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mt-16 mb-8">
-          What’s new in Tailwind
+          What’s new in CaptainCSS
         </h2>
         <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:gap-8 font-semibold text-gray-900 text-center">
           {whatsNew.map((item) => (

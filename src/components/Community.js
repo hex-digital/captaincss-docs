@@ -3,7 +3,7 @@ export function Community() {
     <ul className="grid sm:grid-cols-2 gap-6 xl:gap-8">
       <li>
         <a
-          href="https://github.com/tailwindlabs/tailwindcss/discussions"
+          href="https://github.com/hex-digital/captaincss/discussions"
           className="flex items-start space-x-4"
         >
           <svg fill="currentColor" className="flex-none text-gray-900 w-12 h-12">
@@ -16,33 +16,12 @@ export function Community() {
           </svg>
           <div className="flex-auto">
             <h3 className="font-bold text-gray-900">GitHub Discussions</h3>
-            <p>Connect with members of the Tailwind CSS community.</p>
+            <p>Connect with members of the CaptainCSS community.</p>
           </div>
         </a>
       </li>
       <li>
-        <a href="/discord" className="flex items-start space-x-4">
-          <svg fill="currentColor" className="flex-none text-indigo-400 w-12 h-12">
-            <rect width="48" height="48" rx="12" />
-            <path
-              d="M21.637 23.57c-.745 0-1.332.653-1.332 1.45 0 .797.6 1.45 1.332 1.45.744 0 1.332-.653 1.332-1.45.013-.797-.588-1.45-1.332-1.45zm4.767 0c-.744 0-1.332.653-1.332 1.45 0 .797.6 1.45 1.332 1.45.745 0 1.332-.653 1.332-1.45 0-.797-.587-1.45-1.332-1.45z"
-              fill="currentColor"
-              className="text-indigo-50"
-            />
-            <path
-              d="M32.75 12.613H15.248a2.684 2.684 0 00-2.678 2.69v17.66a2.684 2.684 0 002.678 2.69h14.811l-.692-2.416 1.672 1.554 1.58 1.463 2.809 2.482V15.304a2.684 2.684 0 00-2.678-2.69zm-5.042 17.058s-.47-.561-.862-1.058c1.711-.483 2.364-1.554 2.364-1.554-.535.353-1.045.6-1.502.77a8.591 8.591 0 01-1.894.562 9.151 9.151 0 01-3.383-.013 10.964 10.964 0 01-1.92-.561 7.652 7.652 0 01-.953-.445c-.04-.026-.078-.039-.117-.065-.027-.013-.04-.026-.053-.039-.235-.13-.365-.222-.365-.222s.627 1.045 2.285 1.541c-.392.497-.875 1.084-.875 1.084-2.886-.091-3.983-1.985-3.983-1.985 0-4.206 1.88-7.615 1.88-7.615C20.211 18.661 22 18.7 22 18.7l.131.157c-2.35.679-3.435 1.71-3.435 1.71s.287-.156.77-.378c1.398-.614 2.508-.784 2.965-.823.079-.013.144-.026.223-.026a10.647 10.647 0 016.57 1.228s-1.033-.98-3.253-1.66l.183-.208s1.79-.04 3.67 1.371c0 0 1.881 3.41 1.881 7.615 0 0-1.11 1.894-3.997 1.985z"
-              fill="currentColor"
-              className="text-indigo-50"
-            />
-          </svg>
-          <div className="flex-auto">
-            <h3 className="font-bold text-gray-900">Discord</h3>
-            <p>Join our Discord group to chat with other Tailwind users.</p>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/tailwindcss" className="flex items-start space-x-4">
+        <a href="https://twitter.com/jamiew_tv" className="flex items-start space-x-4">
           <svg fill="currentColor" className="flex-none text-light-blue-400 w-12 h-12">
             <rect width="48" height="48" rx="12" />
             <path
@@ -53,23 +32,7 @@ export function Community() {
           </svg>
           <div className="flex-auto">
             <h3 className="font-bold text-gray-900">Twitter</h3>
-            <p>Follow the Tailwind Twitter account for news and updates.</p>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/tailwindlabs" className="flex items-start space-x-4">
-          <svg fill="currentColor" className="flex-none text-red-500 w-12 h-12">
-            <rect width="48" height="48" rx="12" />
-            <path
-              d="M36.83 18.556c0-2.285-1.681-4.124-3.758-4.124a184.713 184.713 0 00-8.615-.182h-.914c-2.925 0-5.799.05-8.612.183-2.072 0-3.753 1.848-3.753 4.133A75.6 75.6 0 0011 23.99a78.487 78.487 0 00.173 5.429c0 2.285 1.68 4.139 3.753 4.139 2.955.137 5.987.198 9.07.192 3.087.01 6.11-.054 9.069-.193 2.077 0 3.758-1.853 3.758-4.138.121-1.813.177-3.62.172-5.434a73.982 73.982 0 00-.165-5.428zM21.512 28.97v-9.979l7.363 4.987-7.363 4.992z"
-              fill="currentColor"
-              className="text-red-50"
-            />
-          </svg>
-          <div className="flex-auto">
-            <h3 className="font-bold text-gray-900">YouTube</h3>
-            <p>Watch screencasts and feature tutorials of Tailwind.</p>
+            <p>Follow on Twitter for news and updates.</p>
           </div>
         </a>
       </li>
