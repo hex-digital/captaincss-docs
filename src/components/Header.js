@@ -9,7 +9,7 @@ export function Header({ navIsOpen, onNavToggle }) {
   return (
     <>
       <div className="sticky top-0 z-40 lg:z-50 w-full max-w-8xl mx-auto bg-white flex-none flex">
-        <div className="flex-none pl-4 sm:pl-6 xl:pl-8 flex items-center border-b border-gray-200 lg:border-b-0 lg:w-60 xl:w-72">
+        <div className="flex-none pl-4 sm:pl-6 xl:pl-8 flex items-center border-b border-gray-200 lg:border-b-0 lg:w-60 xl:w-72 relative">
           <Link href="/">
             <a
               className="overflow-hidden w-10 md:w-auto"
@@ -19,7 +19,7 @@ export function Header({ navIsOpen, onNavToggle }) {
               }}
             >
               <span className="sr-only">CaptainCSS home page</span>
-              <Logo className="w-auto h-6" />
+              <Logo className="w-auto h-8 relative left-0 top-0 lg:h-20 lg:absolute lg:top-3 lg:left-5" />
             </a>
           </Link>
         </div>
