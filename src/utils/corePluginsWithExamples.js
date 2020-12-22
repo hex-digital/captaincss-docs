@@ -1,4 +1,4 @@
-// @preval
+  // @preval
 const glob = require('glob')
 const path = require('path')
 const dlv = require('dlv')

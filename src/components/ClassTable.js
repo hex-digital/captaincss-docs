@@ -72,6 +72,7 @@ export const ClassTable = memo(
     transformProperties = ({ properties }) => properties,
     transformValue,
     custom,
+    scroll,
   }) => {
     const utilities = {}
     castArray(plugin).forEach((p) => {
@@ -86,7 +87,7 @@ export const ClassTable = memo(
         <div
           className={clsx(
             'overflow-y-auto scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch',
-            { 'lg:max-h-sm': Object.keys(utilities).length > 12 }
+            { 'lg:max-h-sm': Object.keys(utilities).length > 12 || scroll }
           )}
         >
           {custom || (

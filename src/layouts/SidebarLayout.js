@@ -176,44 +176,7 @@ function TopLevelNav() {
         Documentation
       </TopLevelLink>
       <TopLevelLink
-        href="https://tailwindui.com/components?utm_source=tailwindcss&utm_medium=navigation"
-        color="violet"
-        className="mb-4"
-        icon={
-          <>
-            <path d="M6 9l6-3 6 3v6l-6 3-6-3V9z" fill="#F5F3FF" />
-            <path d="M6 9l6 3v6l-6-3V9z" fill="#DDD6FE" />
-            <path d="M18 9l-6 3v6l6-3V9z" fill="#C4B5FD" />
-          </>
-        }
-      >
-        Components
-      </TopLevelLink>
-      <TopLevelLink
-        href="https://play.tailwindcss.com"
-        color="amber"
-        className="mb-4"
-        icon={
-          <>
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M13.196 6.02a1 1 0 01.785 1.176l-2 10a1 1 0 01-1.961-.392l2-10a1 1 0 011.176-.784z"
-              fill="#FDE68A"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M15.293 9.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-2 2a1 1 0 01-1.414-1.414L16.586 12l-1.293-1.293a1 1 0 010-1.414zM8.707 9.293a1 1 0 010 1.414L7.414 12l1.293 1.293a1 1 0 11-1.414 1.414l-2-2a1 1 0 010-1.414l2-2a1 1 0 011.414 0z"
-              fill="#FDF4FF"
-            />
-          </>
-        }
-      >
-        Playground
-      </TopLevelLink>
-      <TopLevelLink
-        href="https://blog.tailwindcss.com"
+        href="https://twitter.com/jamiew_tv"
         color="teal"
         className="mb-4"
         icon={
@@ -233,8 +196,7 @@ function TopLevelNav() {
         News
       </TopLevelLink>
       <TopLevelLink
-        href="/resources"
-        isActive={current === 'resources'}
+        href="https://tailwindcss.com/docs"
         color="blue"
         className="mb-4"
         icon={
@@ -249,23 +211,7 @@ function TopLevelNav() {
           </>
         }
       >
-        Resources
-      </TopLevelLink>
-      <TopLevelLink
-        href="https://www.youtube.com/tailwindlabs"
-        color="purple"
-        className="mb-10"
-        icon={
-          <>
-            <circle cx="12" cy="12" r="7" fill="#F3E8FF" />
-            <path
-              d="M14.52 11.136a1 1 0 010 1.728l-3.016 1.759A1 1 0 0110 13.759v-3.518a1 1 0 011.504-.864l3.015 1.76z"
-              fill="#C084FC"
-            />
-          </>
-        }
-      >
-        Screencasts
+        TailwindCSS
       </TopLevelLink>
     </>
   )

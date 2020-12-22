@@ -17,11 +17,11 @@ export function Disabling({ plugin, name }) {
           }}
         />{' '}
         {plugins.length > 1 ? 'properties' : 'property'} to <code>false</code> in the{' '}
-        <code>corePlugins</code> section of your config file:
+        <code>captain.plugins</code> section of your config file:
       </p>
 
       <ConfigSample
-        path="corePlugins"
+        path="captain.plugins"
         before="..."
         add={plugins.reduce((acc, cur) => ({ ...acc, [cur]: false }), {})}
       />

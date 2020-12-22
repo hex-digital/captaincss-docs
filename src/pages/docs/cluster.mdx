@@ -1,0 +1,357 @@
+---
+title: "Cluster"
+description: "An object for clustering groups of dynamic width elements together, with an even space between them, even when stacking responsively"
+features:
+  responsive: true
+  customizable: true
+---
+
+
+import defaultTheme from 'tailwindcss/defaultTheme'
+import { TipGood, TipBad, TipCompat } from '@/components/Tip'
+import {Variants} from '@/components/Variants'
+import {Disabling} from '@/components/Disabling'
+
+export const custom = (
+  <table className="w-full text-left border-collapse">
+    <colgroup>
+      <col className="w-1/4"/>
+      <col className="w-1/4"/>
+      <col className="w-1/2"/>
+    </colgroup>
+    <thead>
+    <tr>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Class</div>
+      </th>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Properties</div>
+      </th>
+    </tr>
+    </thead>
+    <tbody className="align-baseline">
+    <tr>
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        cluster
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        --cluster-space: 1rem;<br/>
+        overflow: hidden;
+      </td>
+    </tr>
+    <tr className="border-t border-gray-200">
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        cluster <span className="ml-1 text-purple-300">> *</span>
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        align-items: center;<br/>
+        display: flex;<br/>
+        flex-wrap: wrap;<br/>
+        justify-content: flex-start;<br/>
+        margin: calc((var(--cluster-space) / 2) * -1);
+      </td>
+    </tr>
+    <tr className="border-t border-gray-200">
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        cluster <span className="ml-1 text-purple-300">> * > *</span>
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        margin: calc(var(--cluster-space) / 2);
+      </td>
+    </tr>
+    {Object.keys(defaultTheme.spacing).map((spacing) => (
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          cluster--{spacing}
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          var(--cluster-space): {defaultTheme.spacing[spacing]};
+        </td>
+      </tr>
+    ))}
+    </tbody>
+  </table>
+)
+
+export const classes = { custom, scroll: true };
+
+## Usage
+
+The `cluster` object is used when you want to evenly space several fluid-width elements, such as buttons or tags, both horizontally and vertically.
+
+It applies an even margin on all sides of each element within the cluster, which makes them correctly spaced, even when wrapping onto multiple lines.
+
+It then applies a negative margin around the whole element, which, with the help of overflow: hidden, chops off any excess margin that we don't want and pulls all the children flush against the container edge.
+
+This makes the cluster perfectly space the items, without adding any extra margin on the outsides. Great!
+
+```html indigo
+<template preview>
+  <p class="text-sm text-indigo-600 mb-4">Items are evenly spaced on all sides, even when wrapping</p>
+  <div class="cluster">
+    <div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">An item</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">Another item</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">One more item</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">Another one</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">There are now 5 items in this cluster</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">Here is item six</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">Two more</div>
+      <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">Enough</div>
+    </div>
+  </div>
+</template>
+
+<div class="**cluster**">
+    <div>
+      <div>An item</div>
+      <div>Another item</div>
+      <div>One more item</div>
+      <div>Another one</div>
+      <div>There are now 5 items in this cluster</div>
+      <div>Here is item six</div>
+      <div>Two more</div>
+      <div>Enough</div>
+    </div>
+</div>
+```
+
+The Cluster object in Captain provides a standardised way to define a cluster of items, and then use it effortlessly.
+
+### The negative margin
+
+Note that the cluster has an extra element inside it that wraps the clustered items. This is to apply a negative margin
+that chops off the extra margin on the items inside, and pulls the cluster items flush against the container.
+
+The following example shows the margin between the items, and the thick purple line is the container. Any margin outside
+the container is completely hidden and will not affect any other elements.
+
+```html fuchsia
+<template preview>
+  <div class="flex">
+    <div class="w-3 h-44 bg-fuchsia-300 bg-stripes bg-stripes-white border-r-4 border-purple-600"></div>
+    <div>
+      <div class="flex justify-start border-b-4 w-56 border-purple-600">
+        <div class="w-56 h-3 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+      </div>
+      <div class="flex justify-start">
+        <div class="w-16 h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-fuchsia-500">1</div>
+        <div class="w-4 h-16 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+        <div class="w-16 h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-fuchsia-500">2</div>
+        <div class="w-4 h-16 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+        <div class="w-16 h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-fuchsia-500">3</div>
+      </div>
+      <div class="flex justify-start">
+        <div class="w-56 h-4 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+      </div>
+      <div class="flex justify-start">
+        <div class="w-16 h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-fuchsia-500">4</div>
+        <div class="w-4 h-16 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+        <div class="w-16 h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-fuchsia-500">5</div>
+        <div class="w-4 h-16 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+        <div class="w-16 h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-fuchsia-500">6</div>
+      </div>
+      <div class="flex justify-start border-t-4 w-56 border-purple-600">
+        <div class="w-56 h-3 bg-fuchsia-300 bg-stripes bg-stripes-white"></div>
+      </div>
+    </div>
+    <div class="w-3 h-44 bg-fuchsia-300 bg-stripes bg-stripes-white border-l-4 border-purple-600"></div>
+  </div>
+</template>
+
+<div class="cluster">
+    <div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+</div>
+```
+
+<TipGood>Do include the extra element</TipGood>
+
+```diff-html
+  <div class="cluster">
+    **<div>**
+      <div>An item</div>
+    **</div>**
+  </div>
+```
+
+<TipBad>Don't forget the extra element, or your cluster items will be partially hidden</TipBad>
+
+```diff-html
+  <div class="cluster">
+-   <div>
+      <div>An item that's cut off</div>
+-   </div>
+  </div>
+```
+
+<TipCompat>Hopefully we will soon no longer need the negative margin, and the extra containing 
+  element that comes with it. This is because of the `gap` property that automatically puts space only between child 
+  elements. At time of writing, it's just landed in latest versions of modern browsers, but we don't yet support it.</TipCompat>
+
+### Semantic markup
+
+Clustered items are often lists, so it's useful to mark them up semantically. This helps screen readers know there is a list,
+and count how many items are in the list.
+
+You could do the following:
+
+```html
+  <div class="cluster">
+    <**ul**>
+      <**li**>First list item<**/li**>
+      <**li**>Second list item<**/li**>
+      ...
+    <**/ul**>
+  </div>
+```
+
+See [customization options](#customizing) for more information on customizing the spacing between the cluster items.
+
+## Modifiers
+
+### Spacing size
+
+The `cluster` class also includes spacing modifiers out of the box. 
+The [default config](https://github.com/hex-digital/captaincss/blob/master/src/defaultConfig.js) creates these claseses
+from [Tailwind's `space`](https://tailwindcss.com/docs/space) config, which in turn defaults to 
+[Tailwind's global spacing](https://tailwindcss.com/docs/customizing-spacing) config.
+
+A cluster without a modifier defaults to a spacing of 1rem.
+
+```html lightBlue
+<template preview>
+  <div class="cluster cluster--0.5 mb-12">
+    <div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">An item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Another item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">One more item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Another one</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">There are now 5 items in this cluster</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Here is item six</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Two more</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Enough</div>
+    </div>
+  </div>
+  
+  <div class="cluster cluster--8">
+    <div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">An item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Another item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">One more item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Another one</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">There are now 5 items in this cluster</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Here is item six</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Two more</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Enough</div>
+    </div>
+  </div>
+</template>
+
+<div class="cluster **cluster--0.5**">
+    <div>
+      <div>An item</div>
+      <div>Another item</div>
+      <div>One more item</div>
+      <div>Another one</div>
+      <div>There are now 5 items in this cluster</div>
+      <div>Here is item six</div>
+      <div>Two more</div>
+      <div>Enough</div>
+    </div>
+</div>
+
+<div class="cluster **cluster--8**">
+    <div>
+      <div>An item</div>
+      <div>Another item</div>
+      <div>One more item</div>
+      <div>Another one</div>
+      <div>There are now 5 items in this cluster</div>
+      <div>Here is item six</div>
+      <div>Two more</div>
+      <div>Enough</div>
+    </div>
+</div>
+```
+
+### Responsive
+
+You're also able to adjust the size of the cluster when the active breakpoint changes:
+
+```html purple
+<template preview>
+  <div class="cluster cluster--1 md:cluster--2 lg:cluster--6 xl:cluster--8">
+    <div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">An item</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">Another item</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">One more item</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">Another one</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">There are now 5 items in this cluster</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">Here is item six</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">Two more</div>
+      <div class="rounded-md bg-violet-600 text-white font-semibold py-2 px-3">Enough</div>
+    </div>
+  </div>
+</template>
+
+<div class="cluster **cluster--1 md:cluster--2 lg:cluster--6 xl:cluster--8**">
+    <div>
+      <div>An item</div>
+      <div>Another item</div>
+      <div>One more item</div>
+      <div>Another one</div>
+      <div>There are now 5 items in this cluster</div>
+      <div>Here is item six</div>
+      <div>Two more</div>
+      <div>Enough</div>
+    </div>
+</div>
+```
+
+## Customizing
+
+### Gap
+
+To change the gaps available to the `cluster` class, specify the name and gap size using the `gap` option in the `theme.cluster` section of your config file:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    cluster: (theme) => ({
++     gap: {
++       DEFAULT: '1rem',
++       ...theme('space'),
++     },
+    }),
+  },
+}
+```
+
+If you only have a single cluster gap size, you can specify a single size as a shorthand:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    cluster: {
++     gap: '1rem',
+    },
+  },
+}
+```
+
+### Variants
+
+<Variants plugin="cluster" extra={[]}/>
+
+### Disabling entirely
+
+<Disabling plugin="cluster"/>

@@ -258,5 +258,6 @@ module.exports = {
 
       addUtilities(utilities)
     },
+    require('@captaincss/captaincss'),
   ],
 }

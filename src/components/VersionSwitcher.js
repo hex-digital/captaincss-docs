@@ -7,26 +7,22 @@ export function VersionSwitcher({ className }) {
 
   function submit(e) {
     e.preventDefault()
-    if (selectRef.current.value === 'v0') {
-      window.location = 'https://tailwindcss-v0.netlify.app/'
-    }
-    if (selectRef.current.value === 'v1') {
-      window.location = 'https://v1.tailwindcss.com/'
+    if (selectRef.current.value === 'tailwind') {
+      window.location = 'https://tailwindcss.com/docs'
     }
   }
 
   return (
     <form onSubmit={submit} className={clsx('relative', className)}>
       <label>
-        <span className="sr-only">Tailwind CSS Version</span>
+        <span className="sr-only">Swap to Tailwind's documentation</span>
         <select
           ref={selectRef}
           className="appearance-none block bg-transparent pr-7 py-1 text-gray-500 font-medium text-sm focus:outline-none focus:text-gray-900 transition-colors duration-200"
           onChange={submit}
         >
-          <option value="v2">v{tailwindVersion}</option>
-          <option value="v1">v1.9.6</option>
-          <option value="v0">v0.7.4</option>
+          <option value="captain">CaptainCSS</option>
+          <option value="tailwind">TailwindCSS</option>
         </select>
       </label>
       <svg

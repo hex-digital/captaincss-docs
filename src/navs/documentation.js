@@ -10,37 +10,23 @@ export const documentationNav = {
     pages['installation'],
     {
       title: 'Release Notes',
-      href: 'https://blog.tailwindcss.com/tailwindcss-v2',
+      href: 'https://github.com/hex-digital/captaincss/blob/main/CHANGELOG.md',
     },
-    pages['upgrading-to-v2'],
-    pages['using-with-preprocessors'],
-    pages['optimizing-for-production'],
     pages['browser-support'],
-    pages['intellisense'],
   ],
   'Core Concepts': [
-    pages['utility-first'],
-    pages['responsive-design'],
-    pages['hover-focus-and-other-states'],
-    pages['dark-mode'],
-    pages['adding-base-styles'],
-    pages['extracting-components'],
-    pages['adding-new-utilities'],
-    pages['functions-and-directives'],
+    // pages['ITCSS'],
+    // pages['BEM'],
   ],
   Customization: [
     pages['configuration'],
     pages['theme'],
-    pages['breakpoints'],
-    pages['customizing-colors'],
-    pages['customizing-spacing'],
-    pages['configuring-variants'],
-    pages['plugins'],
-    pages['presets'],
   ],
-  'Base Styles': [pages['preflight']],
   Layout: [
-    pages['container'],
+    pages['cluster'],
+    pages['stack'],
+    // pages['frame'],
+    pages['wrapper'],
     pages['box-sizing'],
     pages['display'],
     pages['float'],
@@ -53,6 +39,13 @@ export const documentationNav = {
     pages['top-right-bottom-left'],
     pages['visibility'],
     pages['z-index'],
+  ],
+  Accessibility: [
+    // pages['skip-link'],
+    pages['screen-readers']
+  ],
+  Development: [
+    // pages['active-breakpoint']
   ],
   Flexbox: [
     pages['flex-direction'],
@@ -168,6 +161,5 @@ export const documentationNav = {
     pages['user-select'],
   ],
   SVG: [pages['fill'], pages['stroke'], pages['stroke-width']],
-  Accessibility: [pages['screen-readers']],
   'Official Plugins': [pages['typography-plugin']],
 }

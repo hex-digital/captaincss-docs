@@ -1,17 +1,9 @@
 import { DocumentationLayout } from '@/layouts/DocumentationLayout'
-import { gradients } from '@/utils/gradients'
-import { ReactComponent as ScreencastsImage } from '@/img/screencasts.svg'
-import { ReactComponent as GuidesImage } from '@/img/guides.svg'
-import { ReactComponent as PlayImage } from '@/img/play.svg'
-import { ReactComponent as TuiLogo } from '@/img/tailwind-ui-logo-on-dark.svg'
 import Link from 'next/link'
+import { Link as TextLink } from '@/components/home/common'
 import clsx from 'clsx'
 import tinytime from 'tinytime'
 import { Community } from '@/components/Community'
-import styles from './index.module.css'
-import { Widont } from '@/components/Widont'
-import { ReactComponent as TuiBundleLogo } from '@/img/tailwind-ui-bundle-logo.svg'
-import { ReactComponent as RefactoringUiCompleteLogo } from '@/img/refactoring-ui-complete-logo.svg'
 
 const whatsNew = [
   {
@@ -45,15 +37,14 @@ const whatsNew = [
     href: '/docs/intrinsic-center',
   },
   {
-    title: 'Screen Debug',
-    version: 'Soon',
-    image: require('@/img/docs/gradients.svg').ReactComponent,
-    href: '/docs/screen-debug',
+    title: 'Active Breakpoint',
+    image: require('@/img/docs/active-breakpoint.svg').ReactComponent,
+    href: '/docs/active-breakpoint',
   },
   {
     title: 'Config Styleguide',
     version: 'Soon',
-    image: require('@/img/docs/animations.svg').ReactComponent,
+    image: require('@/img/docs/config-styleguide.svg').ReactComponent,
     href: '/docs/config-styleguide',
   },
 ]
@@ -64,14 +55,14 @@ const latestUpdates = [
     date: '2020-12-23T09:00:00.000Z',
     url: 'https://captaincss.hexdigital.com',
     description:
-      `We just released the first interation of the CaptainCSS documentation, as a fork of Tailwind's docs repo for maximum familiarity when using them both.`,
+      `We just released the first iteration of the CaptainCSS documentation, as a fork of Tailwind's docs repo for maximum familiarity when using them both.`,
   },
   {
     title: 'CaptainCSS v2 released',
     date: '2020-12-22T09:00:00.000Z',
     url: 'https://github.com/hex-digital/captaincss/releases',
     description:
-      "CaptainCSS is rewritten as a plugin for Tailwind, to coincide with the release of Tailwind v2.",
+      "CaptainCSS is rewritten as a plugin for Tailwind, to coincide with the release of Tailwind v2. SCSS was removed, and it became fully PostCSS.",
   },
   {
     title: 'CaptainCSS v1 released',
@@ -91,13 +82,11 @@ export default function DocsLandingPage() {
         Getting started with CaptainCSS
       </h1>
       <p className="text-2xl tracking-tight mb-10">
-        An extensible, scalable set of CSS objects and utilities that harness Tailwind and ITCSS to provide structure to teams and large or long-lasting projects.
+        An extensible, scalable set of CSS objects and utilities that harness Tailwind to provide structure to teams and large or long-lasting projects.
       </p>
-      <Link href="/docs/installation">
-        <a className="text-2xl tracking-tight font-semibold inline-flex">
-          Start learning
-        </a>
-      </Link>
+      <TextLink href="/docs/installation" className="text-purple-600 hover:text-purple-800">
+        Get Started ->
+      </TextLink>
 
       <section>
         <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mt-16 mb-8">
@@ -124,9 +113,9 @@ export default function DocsLandingPage() {
       <section>
         <header className="flex items-center justify-between mt-16 mb-8">
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900">Latest Updates</h2>
-          <a href="https://blog.tailwindcss.com" className="font-medium text-gray-900">
+          {/*<a href="https://twitter.com/jamiew_tv" className="font-medium text-gray-900">
             View all the latest updates
-          </a>
+          </a>*/}
         </header>
         <ul className="bg-gray-50 rounded-3xl p-2 sm:p-5 xl:p-6">
           {latestUpdates.map((item, i) => (

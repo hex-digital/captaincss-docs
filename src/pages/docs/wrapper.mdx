@@ -1,0 +1,291 @@
+---
+title: "Wrapper"
+description: "An object that applies a max width and centering to your content, and a padding that can change per screensize"
+features:
+  customizable: true
+---
+
+import { Variants } from '@/components/Variants'
+import { Disabling } from '@/components/Disabling'
+
+export const screens = {
+  'md': {
+    screen: '768px',
+    padding: '2rem',
+  },
+  'lg': {
+    screen: '1024px',
+    padding: '3.5rem',
+  },
+  'xl': {
+    screen: '1280px',
+    padding: '5rem',
+  }, 
+};
+
+export const classes = (
+  <table className="w-full text-left border-collapse">
+    <colgroup>
+      <col className="w-1/4" />
+      <col className="w-1/4" />
+      <col className="w-1/2" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+          <div className="pb-2 border-b border-gray-200">Class</div>
+        </th>
+        <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+          <div className="pb-2 border-b border-gray-200">Breakpoint</div>
+        </th>
+        <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+          <div className="pb-2 border-b border-gray-200">Properties</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody className="align-baseline">
+      <tr>
+        <td rowSpan={4} className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper
+        </td>
+        <td className="py-2 text-xs italic">
+          None
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          box-sizing: border-box;<br />
+          display: block;<br />
+          margin-left: auto;<br />
+          margin-right: auto;<br />
+          padding-right: 20px;<br />
+          padding-left: 20px;<br />
+          width: 100%;<br />
+          max-width: 80rem;
+        </td>
+      </tr>
+      {Object.keys(screens).map((screen) => (
+        <tr key={screen.screen}>
+          <td className="py-2 border-t border-gray-200 font-mono text-xs">
+            {screen} <span className="font-sans italic">({screens[screen].screen})</span>
+          </td>
+          <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre border-t border-gray-200">
+            padding-left: {screens[screen].padding};<br />
+            padding-right: {screens[screen].padding};
+          </td>
+        </tr>
+      ))}
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper--sm
+        </td>
+        <td className="py-2 text-xs italic">
+          -
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          max-width: 60rem;
+        </td>
+      </tr>
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper--lg
+        </td>
+        <td className="py-2 text-xs italic">
+          -
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          max-width: 90rem;
+        </td>
+      </tr>
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper__wide
+        </td>
+        <td className="py-2 text-xs italic">
+          -
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          margin-left: calc(-75vw / 2 + 100% / 2);<br />
+          margin-right: calc(-75vw / 2 + 100% / 2);<br />
+          max-width: none;
+        </td>
+      </tr>
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper__bleed
+        </td>
+        <td className="py-2 text-xs italic">
+          -
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          margin-left: calc(-100vw / 2 + 100% / 2);<br />
+          margin-right: calc(-100vw / 2 + 100% / 2);<br />
+          max-width: 100vw;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+)
+
+## Usage
+
+The `wrapper` class sets the `max-width` of an element to match a predefined width, set in the theme config. 
+
+This is usually achieved in Tailwind by applying classes like the following:
+
+```html
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
+    <!-- ... -->
+</div>
+```
+
+However, this is often immediately outsourced to a component, as it's repeated constantly across the project.
+
+The Wrapper object in Captain provides a standardised way to define your wrapper widths and paddings, and then use it 
+effortlessly. 
+
+```html
+<div class="wrapper">
+    <!-- ... -->
+</div>
+```
+
+The `wrapper` class applies a max-width and padding as defined in your Tailwind config.
+
+The padding can be set per breakpoint, and will apply when the screen reaches that breakpoint.
+
+Finally, when the screen width is wider than the wrapper, it will be automatically centered in its container.
+
+See [customization options](#customizing) for more information on customizing the wrapper.
+
+### Modifiers
+
+The `wrapper` class also includes two modifiers out of the box, for different sized wrappers:
+
+```html
+<!-- Max width changed to 60rem -->
+<div class="wrapper **wrapper--sm**">
+  <!-- ... -->
+</div>
+
+<!-- Max width changed to 90rem -->
+<div class="wrapper **wrapper--lg**">
+  <!-- ... -->
+</div>
+```
+
+The modifier names and width sizes can be overridden or extended in your tailwind config. See [customization options](#customizing) below.
+
+### Elements
+
+The `wrapper` class has two elements that can be applied to any child inside of a wrapper.
+
+These elements are designed to easily allow content to 'break out' of the wrapper, such as for full-screen bleeding
+images within content posts, for example.
+
+```html
+<!-- Content will be a bit wider than the wrapper -->
+<div class="wrapper">
+    <img class="wrapper__wide">
+        <!-- ... -->
+    </img>
+</div>
+
+<!-- Content will be the full width of the screen -->
+<div class="wrapper">
+    <img class="wrapper__bleed">
+        <!-- ... -->
+    </img>
+</div>
+```
+
+## Customizing
+
+### Max Width
+
+To change the max-widths available to the `wrapper` class, specify the name and width using the `maxWidth` option in the `theme.wrapper` section of your config file:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     maxWidth: {
++       DEFAULT: '80rem',
++       sm: '70rem', 
++     },
+    },
+  },
+}
+```
+
+If you only have a single wrapper width, you can specify a single width as a shorthand:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     maxWidth: '80rem',
+    },
+  },
+}
+```
+
+### Horizontal padding
+
+To change the horizontal padding added to the `wrapper` class, specify the breakpoint name and padding amount you'd like using the `padding` option in the `theme.wrapper` section of your config file:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     padding: {
++       DEFAULT: '1rem',
++       md: '2rem',
++       lg: '3.5rem',
++     },
+    },
+  },
+}
+```
+
+Any breakpoints not defined will inherit from the previous breakpoint's value in ascending order, or the default if there is nothing lower specified.
+
+If you don't want a different padding at each breakpoint, you can specify a single padding value to use for all breakpoints instead:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     padding: '1rem',
+    },
+  },
+}
+```
+
+You can use values from the rest of the theme config as well, either by using the theme helper or by importing the default config:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     padding: (theme) => ({
++       DEFAULT: theme('spacing.4'),
++       'md': theme('spacing.6'), 
++     }),
+    },
+  },
+};
+```
+
+Learn more about this at [Tailwind's docs for referencing other values](https://tailwindcss.com/docs/theme#referencing-other-values).
+
+### Variants
+
+<Variants plugin="wrapper" extra={[]} />
+
+### Disabling entirely
+
+<Disabling plugin="wrapper" />

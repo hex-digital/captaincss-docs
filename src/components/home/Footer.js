@@ -19,10 +19,8 @@ const footerNav = {
   },
   Community: {
     items: [
-      { title: 'GitHub', href: 'https://github.com/tailwindlabs/tailwindcss' },
-      { title: 'Discord', href: '/discord' },
-      { title: 'Twitter', href: 'https://twitter.com/tailwindcss' },
-      { title: 'YouTube', href: 'https://www.youtube.com/tailwindlabs' },
+      { title: 'GitHub', href: 'https://github.com/hex-digital/captaincss' },
+      { title: 'Twitter', href: 'https://twitter.com/jamiew_tv' },
     ],
   },
 }
