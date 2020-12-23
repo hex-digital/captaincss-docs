@@ -19,7 +19,8 @@ export function Header({ navIsOpen, onNavToggle }) {
               }}
             >
               <span className="sr-only">CaptainCSS home page</span>
-              <Logo className="w-auto h-8 relative left-0 top-0 lg:h-16 lg:absolute lg:top-3 lg:left-5" />
+              <h1 className="hidden lg:inline-block text-2xl xl:text-3xl font-medium text-gray-900 tracking-tight lg:ml-16 xl:ml-14">CaptainCSS</h1>
+              <Logo className="w-auto h-8 relative left-0 top-0 lg:h-12 lg:absolute lg:top-3 lg:left-5" />
             </a>
           </Link>
         </div>
