@@ -60,7 +60,7 @@ export const custom = (
       </td>
     </tr>
     {Object.keys(defaultTheme.spacing).map((spacing) => (
-      <tr className="border-t border-gray-200">
+      <tr key={spacing} className="border-t border-gray-200">
         <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
           stack--{spacing}
         </td>
