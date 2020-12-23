@@ -58,7 +58,7 @@ export const custom = (
       </td>
     </tr>
     {Object.keys(defaultTheme.screens).map((screen) => (
-      <tr className="border-t border-gray-200">
+      <tr key={screen} className="border-t border-gray-200">
         <td className="py-2 border-t border-gray-200 font-mono text-xs">
           {screen} <span className="font-sans italic">({defaultTheme.screens[screen]})</span>
         </td>
