@@ -73,14 +73,14 @@ export default function Home() {
         <meta
           key="twitter:title"
           name="twitter:title"
-          content="Tailwind CSS - Rapidly build modern websites without ever leaving your HTML."
+          content="CaptainCSS - Rapidly build layouts that scale with elegance, the way CSS intended."
         />
         <meta
           key="og:title"
           property="og:title"
-          content="Tailwind CSS - Rapidly build modern websites without ever leaving your HTML."
+          content="CaptainCSS - Rapidly build layouts that scale with elegance, the way CSS intended."
         />
-        <title>CaptainCSS - The Tailwind Toolbox of common objects and utilities - A Tailwind Plugin</title>
+        <title>CaptainCSS - Rapidly build layouts that scale with elegance, the way CSS intended - A Tailwind Plugin</title>
       </Head>
       <header className="relative z-10 max-w-screen-lg xl:max-w-screen-xl mx-auto">
         <div className="px-4 sm:px-6 md:px-8 mb-14 sm:mb-20 xl:mb-8">
