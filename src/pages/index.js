@@ -11,8 +11,7 @@ import { ModernFeatures } from '@/components/home/ModernFeatures'
 import { EditorTools } from '@/components/home/EditorTools'
 import { ReadyMadeComponents } from '@/components/home/ReadyMadeComponents'
 import { Search } from '@/components/Search'
-import { Hero } from '@/components/home/Hero'
-import { BigText, InlineCode, Link, Paragraph, Widont } from '@/components/home/common'
+import { BigText, InlineCode, Paragraph, Widont } from '@/components/home/common'
 import { useEffect, useState } from 'react'
 import { Logo } from '@/components/Logo'
 import { Footer } from '@/components/home/Footer'
@@ -81,7 +80,7 @@ export default function Home() {
           property="og:title"
           content="Tailwind CSS - Rapidly build modern websites without ever leaving your HTML."
         />
-        <title>Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.</title>
+        <title>CaptainCSS - The Tailwind Toolbox of common objects and utilities - A Tailwind Plugin</title>
       </Head>
       <header className="relative z-10 max-w-screen-lg xl:max-w-screen-xl mx-auto">
         <div className="px-4 sm:px-6 md:px-8 mb-14 sm:mb-20 xl:mb-8">
@@ -108,15 +107,18 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <Logo className="w-auto h-7 sm:h-8" />
+          <div className="flex items-center space-x-4">
+            <Logo className="w-24 h-auto inline-block" />
+            <span className="inline-block text-4xl xl:text-4xl font-medium text-gray-900 tracking-tight">CaptainCSS</span>
+          </div>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl leading-none font-extrabold tracking-tight text-gray-900 mt-10 mb-8 sm:mt-14 sm:mb-10">
-            Rapidly build modern websites without ever leaving your HTML.
+            Rapidly build layouts that scale with elegance, the way CSS intended.
           </h1>
           <p className="max-w-screen-lg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11">
-            A utility-first CSS framework packed with classes like <InlineCode>flex</InlineCode>,{' '}
-            <InlineCode>pt-4</InlineCode>, <InlineCode>text-center</InlineCode> and{' '}
-            <InlineCode>rotate-90</InlineCode> that can be composed to build any design, directly in
-            your markup.
+            A toolbox packed with battle hardened objects like <InlineCode>Stack</InlineCode>,{' '}
+            <InlineCode>Cluster</InlineCode>, <InlineCode>Wrapper</InlineCode>, and{' '}
+            <InlineCode>Frame</InlineCode> to give you and your team the same expressive
+            layout lingo for objects you probably already use, but didn't even know it.
           </p>
           <div className="flex flex-wrap space-y-4 sm:space-y-0 sm:space-x-4 text-center">
             <NextLink href="/docs">
@@ -127,17 +129,16 @@ export default function Home() {
             <NpmInstallButton />
           </div>
         </div>
-        <Hero />
       </header>
       <section className="relative z-10 text-center max-w-screen-lg xl:max-w-screen-xl mx-auto">
         <div className="px-4 sm:px-6 md:px-8">
           <BigText as="h2" className="mb-8">
-            <Widont>“Best practices” don’t actually work.</Widont>
+            <Widont>A problem named is a problem solved</Widont>
           </BigText>
           <figure>
             <blockquote>
               <Paragraph className="max-w-4xl mx-auto mb-6">
-                I’ve written{' '}
+                While Tailwind does away with the majority of{' '}
                 <a
                   href="https://adamwathan.me/css-utility-classes-and-separation-of-concerns/"
                   className="text-light-blue-600 font-semibold"
@@ -146,45 +147,26 @@ export default function Home() {
                       'inset 0 -0.1666666667em 0 0 #fff, inset 0 -0.3333333333em 0 0 #bae6fd',
                   }}
                 >
-                  a few thousand words
-                </a>{' '}
+                  “semantic class names”
+                </a>,{' '}
+                it's still extremely helpful to have names for common patterns. Components have names, design patterns
+                have names. Even Tailwind has a <InlineCode>container</InlineCode>{' '}
                 <Widont>
-                  on why traditional “semantic class names” are the reason CSS is hard to maintain,
-                  but the truth is you’re never going to believe me until you actually try it. If
-                  you can suppress the urge to retch long enough to give it a chance, I really think
-                  you'll wonder how you ever worked with CSS any other way.
+                  component, which is a named layout object.
+                </Widont>
+              </Paragraph>
+              <Paragraph className="max-w-4xl mx-auto mb-6">
+                <Widont>
+                  Giving names to ideas makes them easier to talk about and refer to, without having to explain them
+                  every time. CaptainCSS is a toolbox with a set of layouts you probably already use, named
+                  and packaged as a Tailwind plugin, for maximum operability. Start speaking the same language today,
+                  and you'll wonder how you ever worked any other way.
                 </Widont>
               </Paragraph>
             </blockquote>
-            <figcaption className="sm:text-xl font-medium flex flex-col items-center">
-              <div className="p-1 border-2 border-light-blue-400 rounded-full mb-3">
-                <img
-                  src={require('@/img/adam.jpg').default}
-                  alt=""
-                  className="w-10 h-10 rounded-full bg-light-blue-100"
-                  loading="lazy"
-                />
-              </div>
-              <div className="text-gray-900">Adam Wathan</div>
-              <div className="text-light-blue-600">Creator of Tailwind CSS</div>
-            </figcaption>
           </figure>
         </div>
       </section>
-      <Testimonials />
-      <div className="max-w-screen-lg xl:max-w-screen-xl mx-auto space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-        <ConstraintBased />
-        <BuildAnything />
-        <Performance />
-        <MobileFirst />
-        <StateVariants />
-        <ComponentDriven />
-        <DarkMode />
-        <Customization />
-        <ModernFeatures />
-        <EditorTools />
-        <ReadyMadeComponents />
-      </div>
       <Footer />
     </div>
   )
