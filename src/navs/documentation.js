@@ -44,5 +44,9 @@ export const documentationNav = {
       title: 'Tailwind Typography',
       href: 'https://tailwindcss.com/docs/typography-plugin',
     },
+    {
+      title: 'Tailwind UI',
+      href: 'https://tailwindui.com/',
+    },
   ],
 }
