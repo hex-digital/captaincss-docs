@@ -19,7 +19,7 @@ export function Header({ navIsOpen, onNavToggle }) {
               }}
             >
               <span className="sr-only">CaptainCSS home page</span>
-              <Logo className="w-auto h-8 relative left-0 top-0 lg:h-20 lg:absolute lg:top-3 lg:left-5" />
+              <Logo className="w-auto h-8 relative left-0 top-0 lg:h-16 lg:absolute lg:top-3 lg:left-5" />
             </a>
           </Link>
         </div>

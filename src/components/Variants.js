@@ -2,8 +2,8 @@ import { defaultConfig } from '@/utils/defaultConfig'
 import { joinWithAnd } from '@/utils/joinWithAnd'
 import { ConfigSample } from '@/components/ConfigSample'
 
-export function Variants({ plugin, name, extra = null }) {
-  const variants = defaultConfig.variants[plugin] || ['responsive']
+export function Variants({ plugin, name, variantList = null, extra = null }) {
+  const variants = defaultConfig.variants[plugin] || variantList || ['responsive']
   name = name || plugin.replace(/([a-z])([A-Z])/g, (m, p1, p2) => `${p1} ${p2.toLowerCase()}`)
   const extraVariants = (extra || ['responsive', 'hover', 'focus', 'active', 'group-hover'])
     .filter((x) => !variants.includes(x))

@@ -42,10 +42,10 @@ const whatsNew = [
     href: '/docs/active-breakpoint',
   },
   {
-    title: 'Config Styleguide',
+    title: 'More dev helpers',
     version: 'Soon',
     image: require('@/img/docs/config-styleguide.svg').ReactComponent,
-    href: '/docs/config-styleguide',
+    href: '/docs/dev-helpers',
   },
 ]
 

@@ -1,0 +1,255 @@
+---
+title: "Frame"
+description: "An object used to constrain any content within it to a particular aspect ratio, without squashing or distorting the content - commonly used for videos and images"
+features:
+  responsive: true
+  customizable: true
+---
+
+
+import defaultTheme from 'tailwindcss/defaultTheme'
+import {Variants} from '@/components/Variants'
+import {Disabling} from '@/components/Disabling'
+
+export const ratios = {
+  '1:1': '1:1',
+  '16:9': '16:9',
+  golden: '1.618:1'
+};
+
+export const custom = (
+  <table className="w-full text-left border-collapse">
+    <colgroup>
+      <col className="w-1/4"/>
+      <col className="w-1/4"/>
+      <col className="w-1/2"/>
+    </colgroup>
+    <thead>
+    <tr>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Class</div>
+      </th>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Properties</div>
+      </th>
+    </tr>
+    </thead>
+    <tbody className="align-baseline">
+    <tr>
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        frame
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        --frame-antecedent: 9px;<br />
+        --frame-consequent: 16px;<br />
+        padding-bottom: calc(var(--frame-consequent) / var(--frame-antecedent) * 100%);<br />
+        position: relative;
+      </td>
+    </tr>
+    <tr className="border-t border-gray-200">
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        frame <span className="ml-1 text-purple-300">> *</span>
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        align-items: center;<br />
+        bottom: 0;<br />
+        display: flex;<br />
+        justify-content: center;<br />
+        left: 0;<br />
+        overflow: hidden;<br />
+        position: absolute;<br />
+        right: 0;<br />
+        top: 0;
+      </td>
+    </tr>
+    <tr className="border-t border-gray-200">
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        frame <span className="ml-1 text-purple-300">> img</span><br />
+        frame <span className="ml-1 text-purple-300">> video</span><br />
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        height: 100%;<br />
+        width: 100%;<br />
+        object-fit: cover;
+      </td>
+    </tr>
+    {Object.keys(ratios).map((ratio) => (
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          frame--{ratio}
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          --frame-antecedent: {ratios[ratio].split(':')[0]};<br />
+          --frame-consequent: {ratios[ratio].split(':')[1]};
+        </td>
+      </tr>
+    ))}
+    </tbody>
+  </table>
+)
+
+export const classes = {custom};
+
+## Usage
+
+The `frame` object is used to create a rectangle that acts as a window onto any content we place behind it. It allows us to
+constrain the content to a particular aspect ratio without squashing or distortion the content.
+
+The most common use case for a `frame` is to ensure images in a grid are the correct aspect ratio.
+
+```html amber
+<template preview>
+  <div class="stack stack--4">
+    <p>With a frame</p>
+    <div class="cluster mb-12">
+      <div>
+        <div>
+          <div class="w-24 frame frame--1:1">
+            <img alt="A random 100x100 image" src="https://source.unsplash.com/random/100x100" width="100" height="100">
+          </div>
+        </div>
+        <div>
+          <div class="w-24 frame frame--1:1">
+            <img alt="A random 140x80 image" src="https://source.unsplash.com/random/140x80" width="140" height="80">
+          </div>
+        </div>
+        <div>
+          <div class="w-24 frame frame--1:1">
+            <img alt="A random 80x80 image" src="https://source.unsplash.com/random/80x80" width="80" height="80">
+          </div>
+        </div>
+        <div>
+          <div class="w-24 frame frame--1:1">
+            <img alt="A random 70x120 image" src="https://source.unsplash.com/random/70x102" width="70" height="120">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>Without a frame</p>
+    <div class="cluster">
+      <div>
+        <img alt="A random 100x100 image" src="https://source.unsplash.com/random/100x100" width="100" height="100">
+        <img alt="A random 140x80 image" src="https://source.unsplash.com/random/140x80" width="140" height="80">
+        <img alt="A random 80x80 image" src="https://source.unsplash.com/random/80x80" width="80" height="80">
+        <img alt="A random 70x120 image" src="https://source.unsplash.com/random/70x102" width="70" height="120">
+      </div>
+    </div>
+  </div>
+</template>
+
+<div class="frame frame--1:1">
+  <img alt="A random 100x100 image" src="https://source.unsplash.com/random/100x100" width="100" height="100">
+</div>
+<div class="frame frame--1:1">
+  <img alt="A random 140x80 image" src="https://source.unsplash.com/random/140x80" width="140" height="80">
+</div>
+<div class="frame frame--1:1">
+  <img alt="A random 80x80 image" src="https://source.unsplash.com/random/80x80" width="80" height="80">
+</div>
+<div class="frame frame--1:1">
+  <img alt="A random 70x120 image" src="https://source.unsplash.com/random/70x102" width="70" height="120">
+</div>
+```
+
+See [customization options](#customizing) for more information on customizing the frame ratios.
+
+### How cropping is done
+
+Content inside a frame is automatically cropped to the aspect ratio defined by the frame.
+
+For [replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element), such as `img` and `video`,
+this is done by setting the width and height to 100% and giving is `object-fit: cover`.
+
+```css
+/* This is how a frame automatically crops your images and video */
+.frame > img, .frame > video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+```
+
+For these elements, you can use [Tailwind's object-position utilities](https://tailwindcss.com/docs/object-position) to
+change the cropping position. By default, this is 50% 50%, or `object-center`.
+
+For non-replaced elements, object-fit doesn't apply. Instead, flex is used to achieve the same effect, via align-items
+and justify-content.
+
+Flex has no effect on replaced-elements, so it safely targets any immediate child using `> *`.
+
+```css
+/* This is how a frame automatically crops all other content */
+.frame > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+## Modifiers
+
+### Ratio
+
+The `frame` class also includes ratio modifiers out of the box.
+The [default config](https://github.com/hex-digital/captaincss/blob/master/src/defaultConfig.js) creates classes for
+a 1:1 square, a 16:9 rectangle, and the golden ratio 1.618:1.
+
+A frame without a modifier defaults to a rectangular 16:9 ratio. This is true even if 16:9 isn't defined in your tailwind config.
+
+```html fuchsia
+<template preview>
+  <div class="w-56">
+    <div class="frame frame--16:9">
+      <img alt="A random 225x225 image" src="https://source.unsplash.com/random/225x225" width="225" height="225">
+    </div>
+  </div>
+</template>
+
+<div class="w-56">
+  <div class="frame frame--16:9">
+    <img alt="A random 225x225 image" src="https://source.unsplash.com/random/225x225" width="225" height="225">
+  </div>
+</div>
+```
+
+See [customization options](#customizing) for more information on customizing the frame ratios.
+
+### Responsive
+
+The `frame` object can have its ratio set at different breakpoints:
+
+```html
+<div class="ratio **md:ratio--4:3 xl:ratio--16:9**">
+  <div>...</div>
+  <div>...</div>
+</div>
+```
+
+## Customizing
+
+### Ratio
+
+To change the ratios available to the `frame` class, specify the name and ratio using the `ratio` option in the `theme.frame` section of your config file:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    frame: {
++     ratio: {
++       '1:1': '1:1',
++       '16:9': '16:9',
++       golden: '1.618:1',
++     },
+    }),
+  },
+}
+```
+
+### Variants
+
+<Variants plugin="frame" extra={[]}/>
+
+### Disabling entirely
+
+<Disabling plugin="frame"/>

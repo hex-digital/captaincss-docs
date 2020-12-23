@@ -15,8 +15,9 @@ export const documentationNav = {
     pages['browser-support'],
   ],
   'Core Concepts': [
-    // pages['ITCSS'],
-    // pages['BEM'],
+    pages['common-language'],
+    pages['ITCSS'],
+    pages['BEM'],
   ],
   Customization: [
     pages['configuration'],
@@ -25,14 +26,14 @@ export const documentationNav = {
   Layout: [
     pages['cluster'],
     pages['stack'],
-    // pages['frame'],
+    pages['frame'],
     pages['wrapper'],
   ],
   Accessibility: [
-    // pages['skip-link'],
+    pages['skip-link'],
   ],
   Development: [
-    // pages['active-breakpoint']
+    pages['active-breakpoint']
   ],
   'Tailwind + Plugins': [
     {

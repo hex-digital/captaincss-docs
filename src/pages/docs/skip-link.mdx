@@ -1,0 +1,160 @@
+---
+title: "Skip Link"
+description: "A utility used to add a hidden skip link, visible on focus, for screen readers and other non-mouse users"
+features:
+  customizable: true
+---
+
+
+import defaultTheme from 'tailwindcss/defaultTheme'
+import {Variants} from '@/components/Variants'
+import {Disabling} from '@/components/Disabling'
+
+export const ratios = {
+  '1:1': '1:1',
+  '16:9': '16:9',
+  golden: '1.618:1'
+};
+
+export const custom = (
+  <table className="w-full text-left border-collapse">
+    <colgroup>
+      <col className="w-1/4"/>
+      <col className="w-1/4"/>
+      <col className="w-1/2"/>
+    </colgroup>
+    <thead>
+    <tr>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Class</div>
+      </th>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Properties</div>
+      </th>
+    </tr>
+    </thead>
+    <tbody className="align-baseline">
+    <tr>
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        skip-link
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        clip: rect(1px, 1px, 1px, 1px);<br />
+        display: block;<br />
+        height: 1px;<br />
+        overflow: hidden;<br />
+        padding: 20px;<br />
+        position: absolute;<br />
+        text-decoration: underline;<br />
+        top: 1rem;<br />
+        left: 1rem;<br />
+        width: 1px;<br />
+        z-index: 999;
+      </td>
+    </tr>
+    <tr className="border-t border-gray-200">
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        skip-link<span className="text-purple-300">:focus</span>
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        clip: auto;<br />
+        height: auto;<br />
+        overflow: visible;<br />
+        width: auto;
+      </td>
+    </tr>
+    </tbody>
+  </table>
+)
+
+export const classes = {custom};
+
+## Usage
+
+The `skip-link` utility is used to add visibly hidden links for screen readers and non-mouse users. The links are always
+the first links the user will reach when pressing tab. This allows them to skip straight to areas of the page, most
+commonly the main content area, and not have to tab through all the navigation links.
+
+To use a skip-link, add the following HTML near the start of your opening `<body>` tag:
+
+```html
+<a class="skip-link" href="#content-wrapper">Skip to content</a>
+```
+
+Then make the destination of the skip link - `#content-wrapper` in this case - is always available:
+
+```html
+<main id="content-wrapper">...</main>
+```
+
+You can see how it works by clicking in the URL bar of this page, and then pressing the tab key. You'll see our
+skip to content skip-link displayed in the top left of the screen.
+
+See [customization options](#customizing) for more information on customizing the styles added.
+
+### What about sr-only
+
+The `sr-only` utility, and its counterpart, `not-sr-only` work great for in-place links and helper text.
+
+Skip-links are usually `position: absolute` however, and the `not-sr-only` utility would set them to static when focused.
+
+The `skip-link` utility allows for the specific creation of skip-links, while also making them clear when reading source code.
+
+## Customizing
+
+### Styles
+
+You can add styles to the skip-link if you would like in several ways.
+
+#### Tailwind Config
+
+The simplest way would be straight in your `tailwind.config.js` file, by specifying the styles using the `styles` option in the `theme.skipLink` section:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    skipLink: {
++     styles: (theme) => ({
++       backgroundColor: theme('colors.white'),
++     }),
+    }),
+  },
+}
+```
+
+The styles object is merged into the main styles of the `.skip-link` class, and will override any defaults set by Captain. 
+Therefore, any CSS-in-JS can be used here.
+
+#### Components / CSS
+
+Alternatively, you can style the .skip-link class directly in your css, or in a component.
+
+Target the `.skip-link` selector and add any styles you need.
+
+```css
+.skip-link {
+  background-color: theme('colors.white');
+}
+```
+
+```html
+// Example Vue SFC
+<template>
+  <a class="skip-link" href="#content-wrapper">Skip to content</a>
+</template>
+
+<style>
+.skip-link {
+  background-color: theme('colors.white');
+}
+</style>
+```
+
+### Variants
+
+<Variants plugin="skipLink" variantList={[]} extra={['active']}/>
+
+### Disabling entirely
+
+<Disabling plugin="skipLink"/>

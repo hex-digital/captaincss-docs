@@ -1,6 +1,6 @@
 ---
 title: "Cluster"
-description: "An object for clustering groups of dynamic width elements together, with an even space between them, even when stacking responsively"
+description: "An object for clustering groups of dynamic width elements together, with a consistent space between them, even when stacking responsively"
 features:
   responsive: true
   customizable: true
@@ -190,6 +190,9 @@ the container is completely hidden and will not affect any other elements.
 -   </div>
   </div>
 ```
+
+If you're using any kind of component-based framework or partials, you can easily move this extra div into a `Cluster`
+component, which allows you to completely forget about it.
 
 <TipCompat>Hopefully we will soon no longer need the negative margin, and the extra containing 
   element that comes with it. This is because of the `gap` property that automatically puts space only between child 
