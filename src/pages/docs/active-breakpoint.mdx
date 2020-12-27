@@ -133,9 +133,22 @@ If both screens and ignoreScreens are not added to your config, the active break
 
 ### Position
 
+You can choose the corner of the screen that the active breakpoint helper will display in. 
 
+To choose the corner, a prefix or suffix, specify horizontal and vertical position using the `position` option in the `theme.activeBreakpoint` section of your config file:
 
-const position = theme('activeBreakpoint.position');
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
++   activeBreakpoint: {
++     position: ['top', 'right'],
++   },
+  },
+}
+```
+
+The available options are: `['top', 'left']`, `['top', 'right']`, `['bottom', 'left']` or `['bottom', 'right']`,
 
 ### Prefix + Suffix
 
