@@ -52,7 +52,7 @@ However, this too has several downsides:
 - It means another boilerplate component that needs to be created at the start of each project
 - It's not easily shared between projects that use different frontend frameworks or application
 - It's not easily configurable in tailwind.config.js, and so not easily shared between tailwind projects
-- It could be called something non-standard, like Container, MaxWidth or ContentBox.
+- It could be called something non-standard, like Container, MaxWidth or ContentBox
 - It's no longer easily standardised between projects, as it's a project specific component
 - It runs the risk of being modified, as any component does, which may have wide reaching consequences for the project
 
@@ -119,7 +119,7 @@ For more information on ITCSS, read [ITCSS: Scalable and Maintainable CSS Archit
 
 The important part is that Tailwind classes form our Utilities layer, and Captain adds objects to the Objects layer.
 
-Furthermore, to differentiate them in the code, we can apply a prefix to all the classes:
+To differentiate them in the code, we can apply a prefix to all the classes:
 
 ```html lightBlue
 <section class="o-wrapper u-mb-4">
@@ -146,9 +146,9 @@ Lastly, if you do have a components layer, you can prefix those with `c-` as wel
 
 Harry Roberts talks about this naming convention in more detail in [BEMIT: Taking the BEM Naming Convention a Step Further](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/).
 
-Read more about ITCSS on the [ITCSS + BEM page](/docs/itcss-bem).
-
 Read about how to configure your prefixes on [the prefixes page](/docs/prefixes)
+
+Read more about ITCSS on the [ITCSS + BEM page](/docs/itcss-bem).
 
 ## BEM naming: ease burden of reading code
 

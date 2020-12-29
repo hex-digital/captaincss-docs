@@ -4,21 +4,12 @@ description: "A development helper for more easily translating between px, rem a
 ---
 
 
-
-import {Disabling} from '@/components/Disabling'
-
-export const ratios = {
-  '1:1': '1:1',
-  '16:9': '16:9',
-  golden: '1.618:1'
-};
-
 export const custom = (
   <table className="w-full text-left border-collapse">
     <colgroup>
-      <col className="w-1/4"/>
-      <col className="w-1/4"/>
       <col className="w-1/2"/>
+      <col className="w-1/4"/>
+      <col className="w-1/4"/>
     </colgroup>
     <thead>
     <tr>
@@ -26,49 +17,67 @@ export const custom = (
         <div className="pb-2 border-b border-gray-200">Function</div>
       </th>
       <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
-        <div className="pb-2 border-b border-gray-200">Properties</div>
+        <div className="pb-2 border-b border-gray-200">Example</div>
+      </th>
+      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+        <div className="pb-2 border-b border-gray-200">Output</div>
       </th>
     </tr>
     </thead>
     <tbody className="align-baseline">
     <tr>
       <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        pxToRem
+        pxToRem<span className="ml-1 text-purple-300">(px, base = 16) => {'`${px / base}rem`'}</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        a
+        pxToRem(24)
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        '1.5rem'
       </td>
     </tr>
     <tr>
       <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        pxToRemPair
+        pxToRemPair<span className="ml-1 text-purple-300">(px, base = 16) => ({'{ [px]: pxToRem(px, base) }'})</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        a
+        pxToRemPair(24)
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        {'{ \'24\': \'1.5rem\' }'}
       </td>
     </tr>
     <tr>
       <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        pxToEm
+        pxToEm<span className="ml-1 text-purple-300">(px, base = 16) => {'`${px / base}em`'}</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        a
+        pxToEm(24)
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        '1.5em'
       </td>
     </tr>
     <tr>
       <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        pxToEmPair
+        pxToEmPair<span className="ml-1 text-purple-300">(px, base = 16) => ({'{ [px]: pxToEm(px, base) }'})</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        a
+        pxToEmPair(24)
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        {'{ \'24\': \'1.5em\' }'}
       </td>
     </tr>
     <tr>
       <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        pxPair
+        pxPair<span className="ml-1 text-purple-300">(px) => ({'{ [px]: `${px}px` }'})</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        a
+        pxPair(24)
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        {'{ \'24\': \'24px\' }'}
       </td>
     </tr>
     </tbody>
@@ -79,212 +88,88 @@ export const classes = {custom};
 
 ## Usage
 
-The Active Breakpoint helper adds a small indicator of the active breakpoint to your page. This is helpful when you're developing
-or debugging, and need to know what breakpoint you're looking at.
+The px/rem helper does not output any classes, but is instead a development utility.
 
-Note that the active breakpoint helper does not appear on production sites, which is denoted by a `process.env.NODE_ENV`
-value of `production`. This is the [same value Tailwind uses](https://tailwindcss.com/docs/optimizing-for-production#basic-usage)
-to determine whether to turn on PurgeCSS, so you should have set it up already.
+The px/rem helper functions make it easier to create Tailwind config files, particularly when transposing values from
+design software like Figma, Zeplin or Adobe XD.
 
-We've replicated it on this page so that you can see it in action.
-
-See [customization options](#customizing) for more information on customizing the styles added, or disabling it completely.
-
-## Customizing
-
-### Screens
-
-You can customize which breakpoints the helper will display. You can do this with an allow list called `screens`, a block list called `ignoreScreens`, or both.
-
-#### Allow List
-
-To create an allow list of screens to display, specify the screen names using the `screens` option in the `theme.activeBreakpoint` section of your config file:
-
-```diff-js
+```js
 // tailwind.config.js
+const { pxToRemPair } = require('@captaincss/captaincss/helpers');
+
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     screens: ['md', 'lg'],
-+   },
+    fontSize: {
+      ...pxToRemPair(12),
+      ...pxToRemPair(14),
+      ...pxToRemPair(16),
+      ...pxToRemPair(18),
+      ...pxToRemPair(22),
+    },
   },
-}
-```
+};
 
-This property will default to [Tailwind's `screens` object](https://tailwindcss.com/docs/theme#screens) if left unspecified.
+// which would result in
 
-#### Block List
-
-It may be easier to specify a block list instead. This will ignore any screens specified, even if they're added in the `screens` object.
-
-To create a block list of screens to not display, specify the screen names using the `ignoreScreens` option in the `theme.activeBreakpoint` section of your config file:
-
-```diff-js
-// tailwind.config.js
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     ignoreScreens: ['sm', '2xl'],
-+   },
+    fontSize: {
+      '12': '0.75rem',
+      '14': '0.875rem',
+      '16': '1rem',
+      '18': '1.125rem',
+      '22': '1.375rem',
+    },
   },
-}
+};
 ```
 
-This property will default to an empty array. This property can be useful if you're using tweakpoints for specific
-cases or components, and do not need to see them in the active breakpoint helper.
+### Base Font size
 
-If both screens and ignoreScreens are not added to your config, the active breakpoint helper will show all screens defined in your [Tailwind config](https://tailwindcss.com/docs/theme#screens).
+By default, the helpers use a base font size of 16 to generate the sizes.
 
-### Position
+However, each helper method takes a second parameter, which allows you to change the base font size.
 
-You can choose the corner of the screen that the active breakpoint helper will display in.
-
-To choose the corner, a prefix or suffix, specify horizontal and vertical position using the `position` option in the `theme.activeBreakpoint` section of your config file:
-
-```diff-js
+```js
 // tailwind.config.js
+const { pxToRemPair } = require('@captaincss/captaincss/helpers');
+
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     position: ['top', 'right'],
-+   },
+    fontSize: {
+      ...pxToRemPair(12, 18),
+      ...pxToRemPair(14, 18),
+      ...pxToRemPair(16, 18),
+      ...pxToRemPair(18, 18),
+      ...pxToRemPair(22, 18),
+    },
   },
-}
+};
 ```
 
-The available options are: `['top', 'left']`, `['top', 'right']`, `['bottom', 'left']` or `['bottom', 'right']`,
+It is likely you will only have one base font size, and so repeating it for each function call can be tedious.
 
-### Prefix + Suffix
+Instead, it is best practice to create a partial application function, or a higher-order function, which stores the base
+font size and uses it automatically for each call.
 
-The helper can display a prefix and a suffix before and after the text on the active breakpoint helper.
-
-By default, these are both empty.
-
-To create a prefix or suffix, specify the text using the `prefix` or `suffix` option in the `theme.activeBreakpoint` section of your config file:
-
-```diff-js
+```js
 // tailwind.config.js
+const { pxToRemPair: pxToRemPairHelper } = require('@captaincss/captaincss/helpers');
+
+const baseFontSize = 18;
+const pxToRemPair = (px) => {
+  return pxToRemPairHelper(px, baseFontSize);
+};
+
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     prefix: 'screen: ',
-+     suffix: ' 🔥',
-+   },
+    fontSize: {
+      ...pxToRemPair(12),
+      ...pxToRemPair(14),
+      ...pxToRemPair(16),
+      ...pxToRemPair(18),
+      ...pxToRemPair(22),
+    },
   },
-}
+};
 ```
-
-You may specify both, one or the other, or neither, in your config.
-
-### Changing entire text
-
-You may also change the text displayed on the helper at any and all breakpoints.
-
-To do this, you'll need to change the `content` style rule on the `body::before` class, for each screen, using the `@screen` directive:
-
-```css
-body::before {
-  content: 'No breakpoint';
-}
-
-@screen sm {
-  body::before {
-    content: 'screen: sm';
-  }
-}
-
-...
-```
-
-When doing it this way, apply any prefixes or suffixes directly in your css, as it will no longer use the ones written in your tailwind config.
-
-### Styles
-
-You can add styles to the active breakpoint helper if you would like in several ways.
-
-#### Tailwind Config
-
-The simplest way would be straight in your `tailwind.config.js` file, by specifying the styles using the `styles` option in the `theme.activeBreakpoint` section:
-
-```diff-js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    activeBreakpoint: {
-+     styles: (theme) => ({
-+       backgroundColor: theme('colors.indigo.500'),
-+     }),
-    }),
-  },
-}
-```
-
-The styles object is merged into the main styles of the active-breakpoint, applied to `body::before`, and will override any defaults set by Captain.
-Therefore, any CSS-in-JS can be used here.
-
-#### Components / CSS
-
-Alternatively, you can style `body::before` directly in your css, or in a component.
-
-Target the `body::before` selector and add any styles you need.
-
-```css
-body::before {
-  background-color: theme('colors.indigo.500');
-}
-```
-
-### Using a class name
-
-The active breakpoint helper targets `body::before` by default.
-
-However, you may wish to use `body::after`, or even a different element entirely, to avoid conflicts with other code.
-
-You can specify which selector and pseudo class to apply using the `selector` and `pseudo` options in the `theme.activeBreakpoint` section of your config file:
-
-```diff-js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    activeBreakpoint: {
-+     pseudo: 'after', // This will now use `body::after`
-    }),
-  },
-}
-```
-
-```diff-js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    activeBreakpoint: {
-+     selector: '.active-breakpoint', // This will now use `.active-breakpoint::before`
-    }),
-  },
-}
-```
-
-If using a class, make sure you include the `.` to designate it as a class. You'll also need to add this class to an element in your HTML for it to apply.
-
-If you're using a [Tailwind prefix](https://tailwindcss.com/docs/configuration#prefix) it will be automatically applied to your selector if it is a class.
-
-### Variants
-
-By default, no variants are generated for the active breakpoint helper.
-
-You can control which variants are generated for the active breakpoint helper by modifying the `activeBreakpoint` property in the `variants` section of your `tailwind.config.js` file.
-
-```diff-js
-  // tailwind.config.js
-  module.exports = {
-    variants: {
-      // ...
-+     activeBreakpoint: [],
-    }
-  }
-```
-
-
-### Disabling entirely
-
-<Disabling plugin="activeBreakpoint"/>
