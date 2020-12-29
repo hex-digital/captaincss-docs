@@ -15,13 +15,14 @@ export const documentationNav = {
     pages['browser-support'],
   ],
   'Core Concepts': [
+    pages['what-is-captain'],
     pages['common-language'],
-    pages['ITCSS'],
-    pages['BEM'],
+    pages['itcss-bem'],
   ],
   Customization: [
     pages['configuration'],
     pages['theme'],
+    pages['prefixes'],
   ],
   Layout: [
     pages['cluster'],
@@ -29,11 +30,15 @@ export const documentationNav = {
     pages['frame'],
     pages['wrapper'],
   ],
+  Utilities: [
+    // pages['blend-mode']
+  ],
   Accessibility: [
     pages['skip-link'],
   ],
   Development: [
-    pages['active-breakpoint']
+    pages['active-breakpoint'],
+    pages['px-rem-functions']
   ],
   'Tailwind + Plugins': [
     {
