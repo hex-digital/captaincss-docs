@@ -40,8 +40,8 @@ export const custom = (
         frame
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        --frame-antecedent: 9px;<br />
-        --frame-consequent: 16px;<br />
+        --frame-antecedent: 9;<br />
+        --frame-consequent: 16;<br />
         padding-bottom: calc(var(--frame-consequent) / var(--frame-antecedent) * 100%);<br />
         position: relative;
       </td>
@@ -93,7 +93,7 @@ export const classes = {custom};
 ## Usage
 
 The `frame` object is used to create a rectangle that acts as a window onto any content we place behind it. It allows us to
-constrain the content to a particular aspect ratio without squashing or distortion the content.
+constrain the content to a particular aspect ratio without squashing or distorting the content.
 
 The most common use case for a `frame` is to ensure images in a grid are the correct aspect ratio.
 
@@ -158,7 +158,7 @@ See [customization options](#customizing) for more information on customizing th
 Content inside a frame is automatically cropped to the aspect ratio defined by the frame.
 
 For [replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element), such as `img` and `video`,
-this is done by setting the width and height to 100% and giving is `object-fit: cover`.
+this is done by setting the width and height to 100% and giving it `object-fit: cover`.
 
 ```css
 /* This is how a frame automatically crops your images and video */
