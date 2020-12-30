@@ -9,22 +9,22 @@ const whatsNew = [
   {
     title: 'Stack Object',
     image: require('@/img/docs/stack-object.svg').ReactComponent,
-    href: '/docs/stack-object',
+    href: '/docs/stack',
   },
   {
     title: 'Cluster Object',
     image: require('@/img/docs/cluster-object.svg').ReactComponent,
-    href: '/docs/cluster-object',
+    href: '/docs/cluster',
   },
   {
     title: 'Frame Object',
     image: require('@/img/docs/frame-object.svg').ReactComponent,
-    href: '/docs/frame-object',
+    href: '/docs/frame',
   },
   {
     title: 'Wrapper Object',
     image: require('@/img/docs/wrapper-object.svg').ReactComponent,
-    href: '/docs/wrapper-object',
+    href: '/docs/wrapper',
   },
   {
     title: 'Skip Link',
@@ -34,18 +34,19 @@ const whatsNew = [
   {
     title: 'Intrinsic Center Utility',
     image: require('@/img/docs/intrinsic-center.svg').ReactComponent,
-    href: '/docs/intrinsic-center',
+    href: '#',
   },
   {
     title: 'Active Breakpoint',
+    version: 'Dev',
     image: require('@/img/docs/active-breakpoint.svg').ReactComponent,
     href: '/docs/active-breakpoint',
   },
   {
-    title: 'More dev helpers',
-    version: 'Soon',
+    title: 'PX/REM helpers',
+    version: 'Dev',
     image: require('@/img/docs/config-styleguide.svg').ReactComponent,
-    href: '/docs/dev-helpers',
+    href: '/docs/px-rem-helpers',
   },
 ]
 
