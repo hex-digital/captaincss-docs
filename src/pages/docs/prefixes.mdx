@@ -5,210 +5,150 @@ description: Customizing the default prefixes for your project.
 ---
 
 
-import {CorePluginReference} from '@/components/CorePluginReference'
+## <Heading hidden>Overview</Heading>
 
-Captain follows in Tailwind's footsteps, ensuring it's completely configurable to allow for the building of completely bespoke user interfaces.
+As discussed in one of our [Core Concepts: ITCSS + BEM](/docs/itcss-bem), prefixing classes is a recommended behaviour.
 
-Captain uses Tailwind's `tailwind.config.js` at the root of the project for all its own theme and config options.
+However, to fit more naturally into Tailwind, Captain will inherit the prefix you've set for your tailwind classes by default,
+from `config.prefix`.
 
-```js
-// Example `tailwind.config.js` file with Captain settings added
-module.exports = {
-  theme: {
-    frame: {
-      ratios: {
-        '4:3': '1:1',
-        '16:9': '16:9',
-        golden: '1.618:1',
-      },
-    },
-    fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-    },
-    extend: {
-      borderRadius: {
-        '4xl': '2rem',
-      },
-      cluster: {
-        gap: {
-          'tag': '1.5rem',
-        },
-      },
-    }
-  },
-  variants: {
-    cluster: [],
-    extend: {
-      borderColor: ['focus-visible'],
-      opacity: ['disabled'],
-    }
-  },
-  captain: {
-    plugins: {
-      stack: false,
-    },
-  },
-}
-```
-
-Like Tailwind, every section of the config file is optional, so you only have to specify what you'd like to change. Any missing sections will fall back to Captain's [default configuration](https://github.com/hex-digital/captaincss/blob/main/src/defaultConfig.js).
-
-## Creating your configuration file
-
-If you don't already have a Tailwind configuration file, [follow Tailwind's instructions to generate one](https://tailwindcss.com/docs/configuration#creating-your-configuration-file).
-
-### Adding the entire default configuration
-
-For most users we encourage you to keep your config file as minimal as possible, and only specify the things you want to customize.
-
-If you'd rather add a complete configuration file that includes all of Captain's default configuration, [copy the default settings from the defaultConfig, here](https://github.com/hex-digital/captaincss/blob/main/src/defaultConfig.js).
-
-## Theme
-
-The `theme` section is where you define the settings related to the visuals of your site.
-
-Most of Captain's objects have size or spacing configurations, and where sensible they inherit from existing theme configuration.
-
-```js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    stack: (theme) => ({
-      gap: {
-        DEFAULT: '1rem',
-        ...theme('space'),
-      },
-    }),
-    wrapper: {
-      padding: {
-        DEFAULT: '16px',
-        md: '32px',
-        lg: '40px',
-        xl: '64px',
-      },
-    },
-    extend: {
-      wrapper: {
-        maxWidth: {
-          md: '980',
-        },
-      },
-    }
-  }
-}
-```
-
-Learn more about the default theme and how to customize it in the [theme configuration guide](/docs/theme).
-
-## Variants
-
-The `variants` section lets you control which [variants](https://tailwindcss.com/docs/hover-focus-and-other-states) are generated for each core plugin added by Captain.
-
-Most of Tailwind's native variants don't apply to Captain, as the layout objects have no visual representation. However, Tailwind allows that any variant can be applied to any of Captain's utilities, if you desire. 
-
-You may also wish to disable some default variants, such as `responsive`, by using an empty array for them.
-
-```js
-// tailwind.config.js
-module.exports = {
-  variants: {
-    cluster: [],
-    stack: [],
-  },
-}
-```
-
-Learn more in Tailwind's [variants configuration guide](https://tailwindcss.com/docs/configuring-variants).
-
-## Presets
-
-The `presets` section allows you to specify your own custom base configuration instead of using Tailwind's default base configuration.
-
-This extends to Captain as well, so you can add any of Captain's configuration to a preset for reuse too.
-
-```js
-// tailwind.config.js
-module.exports = {
-  presets: [
-    require('@acmecorp/base-tailwind-captain-config')
-  ],
-
-  // Project-specific customizations
-  theme: {
-    //...
-  },
-  // ...
-}
-```
-
-Learn more about presets in Tailwind's [presets documentation](https://tailwindcss.com/docs/presets).
-
-## Prefix
-
-As a Tailwind plugin, Captain fully supports prefixing its class names with Tailwind's `prefix` option.
-
-Learn more about prefixes in Tailwind's [prefixes documentation](https://tailwindcss.com/docs/configuration#prefix).
-
-## Captain
-
-Captain uses the `captain` section of Tailwind's config to configure the plugin.
-
-### Plugins
-
-The `captain.plugins` section allows you to completely disable classes that Captain would normally generate by default if you don't need them for your project.
-
-If you don't provide any `captain.plugins` configuration, all core plugins will be enabled by default:
-
-```js
-// tailwind.config.js
-module.exports = {
-  // ...
-}
-```
-
-If you'd like to disable specific plugins, provide an object for `captain.plugins` that sets those plugins to `false`:
-
-```js
+```js lightBlue
 // tailwind.config.js
 module.exports = {
   captain: {
-    plugins: {
-      stack: false,
-      cluster: false,
+    prefix: {
+      objects: '', // A falsey value will default to config('prefix') instead
+      components: '',
     },
   },
-}
+  ...
+};
 ```
 
-If you'd like to safelist which plugins should be enabled, provide an array that includes a list of the plugins you'd like to use:
+The following example demonstrates what your classes will look like with default Tailwind and Captain prefixing:
 
-```js
+```html lightBlue
+<a href="#content" class="skip-link">Skip to content</a>
+<main id="#content">
+  <figure class="stack bg-gray-100 rounded-xl p-8 md:p-0">
+    <img class="w-32 h-32 rounded-full mx-auto" src="/profile-image.jpg" alt="" width="384" height="512">
+    <div class="stack stack--lg text-center">
+      <blockquote>
+        <p class="text-lg font-semibold">
+          “Tailwind CSS is the only framework that I've seen scale
+          on large teams. It’s easy to customize, adapts to any design,
+          and the build size is tiny.”
+        </p>
+      </blockquote>
+      <figcaption class="font-medium">
+        <div class="text-cyan-600">
+          Sarah Dayan
+        </div>
+        <div class="text-gray-500">
+          Staff Engineer, Algolia
+        </div>
+      </figcaption>
+    </div>
+  </figure>
+</main>
+```
+
+## Recommended prefixes
+
+To change your prefixes, set the `objects` and `components` option, under `captain.prefix` of your tailwind config file:
+
+We recommend the following set up to get the most use out of ITCSS:
+
+```js lightBlue
 // tailwind.config.js
 module.exports = {
+  prefix: 'u-',
   captain: {
-    plugins: [
-      'stack',
-      'cluster',
-      'wrapper',
-      // ...
-    ],
+    prefix: {
+      objects: 'o-',
+      components: 'c-',
+    },
   },
-}
+  ...
+};
 ```
 
-If you'd like to disable all of Captain's core plugins, provide an empty array:
+This will prefix all utilities, including those outputted by both Tailwind and Captain, with `u-`.
+Objects and Components outputted by Captain will be prefixed with `o-` and `c-` respectively.
 
-```js
+The following example demonstrates what your classes will now look like:
+
+```html lightBlue
+<a href="#content" class="c-skip-link">Skip to content</a>
+<main id="#content">
+  <figure class="o-stack u-bg-gray-100 u-rounded-xl u-p-8 md:u-p-0">
+    <img class="u-w-32 u-h-32 u-rounded-full u-mx-auto" src="/profile-image.jpg" alt="" width="384" height="512">
+    <div class="o-stack o-stack--lg u-text-center">
+      <blockquote>
+        <p class="u-text-lg u-font-semibold">
+          “Tailwind CSS is the only framework that I've seen scale
+          on large teams. It’s easy to customize, adapts to any design,
+          and the build size is tiny.”
+        </p>
+      </blockquote>
+      <figcaption class="u-font-medium">
+        <div class="text-cyan-600">
+          Sarah Dayan
+        </div>
+        <div class="u-text-gray-500">
+          Staff Engineer, Algolia
+        </div>
+      </figcaption>
+    </div>
+  </figure>
+</main>
+```
+
+## Captain-only prefixes
+
+It's also possible to prefix just objects and components, and leave your Tailwind classes and Captain's utilities unprefixed.
+
+This is a good solution when integrating with existing Tailwind projects that do not use a prefix, or when using a Tailwind
+integration with your IDE that doesn't support prefixes.
+
+```js lightBlue
 // tailwind.config.js
 module.exports = {
+  prefix: '',
   captain: {
-    plugins: [],
+    prefix: {
+      objects: 'o-',
+      components: 'c-',
+    },
   },
-}
+  ...
+};
 ```
 
+The following example demonstrates what your classes will now look like:
 
-Here's a list of every plugin provided by Captain for reference:
-
-<CorePluginReference/>
+```html lightBlue
+<a href="#content" class="c-skip-link">Skip to content</a>
+<main id="#content">
+  <figure class="o-stack bg-gray-100 rounded-xl p-8 md:p-0">
+    <img class="w-32 h-32 rounded-full mx-auto" src="/profile-image.jpg" alt="" width="384" height="512">
+    <div class="o-stack o-stack--lg text-center">
+      <blockquote>
+        <p class="text-lg font-semibold">
+          “Tailwind CSS is the only framework that I've seen scale
+          on large teams. It’s easy to customize, adapts to any design,
+          and the build size is tiny.”
+        </p>
+      </blockquote>
+      <figcaption class="font-medium">
+        <div class="text-cyan-600">
+          Sarah Dayan
+        </div>
+        <div class="text-gray-500">
+          Staff Engineer, Algolia
+        </div>
+      </figcaption>
+    </div>
+  </figure>
+</main>
+```
