@@ -117,7 +117,7 @@ export default function Home() {
           <p className="max-w-screen-lg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11">
             A toolbox packed with battle hardened objects like <InlineCode>Stack</InlineCode>,{' '}
             <InlineCode>Cluster</InlineCode>, <InlineCode>Wrapper</InlineCode>, and{' '}
-            <InlineCode>Frame</InlineCode> to give you and your team the same expressive
+            <InlineCode>Frame</InlineCode> to give you and your team expressive
             layout lingo for objects you probably already use, but didn't even know it.
           </p>
           <div className="flex flex-wrap space-y-4 sm:space-y-0 sm:space-x-4 text-center">
@@ -138,7 +138,7 @@ export default function Home() {
           <figure>
             <blockquote>
               <Paragraph className="max-w-4xl mx-auto mb-6">
-                While Tailwind does away with the majority of{' '}
+                Tailwind has removed the need to overuse{' '}
                 <a
                   href="https://adamwathan.me/css-utility-classes-and-separation-of-concerns/"
                   className="text-light-blue-600 font-semibold"
@@ -149,19 +149,18 @@ export default function Home() {
                 >
                   “semantic class names”
                 </a>,{' '}
-                it's still extremely helpful to have names for common patterns. Components have names, design patterns
-                have names. Even Tailwind has a <InlineCode>container</InlineCode>{' '}
-                <Widont>
-                  component, which is a named layout object.
-                </Widont>
+                <Widont>and Captain brings back the industry standard layout objects you know and love.</Widont>
               </Paragraph>
               <Paragraph className="max-w-4xl mx-auto mb-6">
-                <Widont>
-                  Giving names to ideas makes them easier to talk about and refer to, without having to explain them
-                  every time. CaptainCSS is a toolbox with a set of layouts you probably already use, named
-                  and packaged as a Tailwind plugin, for maximum operability. Start speaking the same language today,
-                  and you'll wonder how you ever worked any other way.
-                </Widont>
+                <NextLink href="/docs">
+                  <a className="text-black font-semibold"
+                     style={{
+                       boxShadow:
+                         'inset 0 -0.1666666667em 0 0 #fff, inset 0 -0.3333333333em 0 0 #999',
+                     }}>
+                    Come see what all the fuss is about
+                  </a>
+                </NextLink>
               </Paragraph>
             </blockquote>
           </figure>
