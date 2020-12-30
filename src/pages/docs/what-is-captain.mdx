@@ -105,15 +105,15 @@ a pages skeletal model without having to see the page.
 Luckily this problem was solved years ago, with the advent of ITCSS (<abbr>Inverted Triangle CSS</abbr>).
 
 ITCSS is a fantastic CSS folder structure and naming convention. It logically groups classes in a way that is easy to understand 
-and scales extremely well, and applies a classname prefix to help identify them in HTML.
+and scales extremely well. We can apply a classname prefix to help identify the layers in HTML.
 
 - Settings
 - Tools
 - Generic
 - Elements
-- Objects
-- Components
-- Utilities
+- Objects `.o-`
+- Components `.c-`
+- Utilities `.u-`
 
 For more information on ITCSS, read [ITCSS: Scalable and Maintainable CSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/).
 
@@ -136,8 +136,9 @@ To differentiate them in the code, we can apply a prefix to all the classes:
   ...
 ```
 
-- Objects: `o-`
-- Utilities: `u-`
+In the above example, all objects have a `o-` prefix, and all utilities have a `u-` prefix.
+
+Read about how to configure your prefixes on [the prefixes page](/docs/prefixes).
 
 If you would prefer not to prefix your Tailwind classes, you can leave those unprefixed, and just prefix the objects, too.
 
@@ -145,8 +146,6 @@ Lastly, if you do have a components layer, you can prefix those with `c-` as wel
 [Skip Link](/docs/skip-link) accessibility component.
 
 Harry Roberts talks about this naming convention in more detail in [BEMIT: Taking the BEM Naming Convention a Step Further](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/).
-
-Read about how to configure your prefixes on [the prefixes page](/docs/prefixes)
 
 Read more about ITCSS on the [ITCSS + BEM page](/docs/itcss-bem).
 

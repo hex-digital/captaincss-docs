@@ -3,365 +3,113 @@ title: "ITCSS and BEM"
 description: ""
 ---
 
+## <Heading hidden>Overview</Heading>
 
-import defaultTheme from 'tailwindcss/defaultTheme'
-import { TipGood, TipBad, TipCompat } from '@/components/Tip'
-import {Variants} from '@/components/Variants'
-import {Disabling} from '@/components/Disabling'
+CaptainCSS is built to ensure it is both easy to read, and brilliantly scalable.
 
-export const custom = (
-  <table className="w-full text-left border-collapse">
-    <colgroup>
-      <col className="w-1/4"/>
-      <col className="w-1/4"/>
-      <col className="w-1/2"/>
-    </colgroup>
-    <thead>
-    <tr>
-      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
-        <div className="pb-2 border-b border-gray-200">Class</div>
-      </th>
-      <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
-        <div className="pb-2 border-b border-gray-200">Properties</div>
-      </th>
-    </tr>
-    </thead>
-    <tbody className="align-baseline">
-    <tr>
-      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        stack
-      </td>
-      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        --stack-space: 1rem;<br />
-        --stack-reverse: 0;<br />
-        display: flex;<br />
-        flex-direction: column;<br />
-        justify-content: flex-start;
-      </td>
-    </tr>
-    <tr className="border-t border-gray-200">
-      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        stack--reverse
-      </td>
-      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        --stack-reverse: 1px;
-      </td>
-    </tr>
-    <tr className="border-t border-gray-200">
-      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-        stack <span className="ml-1 text-purple-300">> *</span>
-      </td>
-      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        margin-top: calc(var(--stack-space) * calc(1 - var(--stack-reverse))); <br />
-        margin-bottom: calc(var(--stack-space) * var(--tw-space-y-reverse));
-      </td>
-    </tr>
-    {Object.keys(defaultTheme.spacing).map((spacing) => (
-      <tr className="border-t border-gray-200">
-        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-          stack--{spacing}
-        </td>
-        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-          var(--stack-space): {defaultTheme.spacing[spacing]};
-        </td>
-      </tr>
-    ))}
-    </tbody>
-  </table>
-)
+It does this by leveraging methodologies that have proven themselves over the past decade.
 
-export const classes = { custom, scroll: true };
+Code is inherently harder to read than it is to write. This is why making code easier to read is extremely important.
 
-## Usage
+Read on to discover how Captain makes use of ITCSS for structure, and BEM for class naming. 
 
-The `stack` object is used when you want to apply spacing between multiple elements.
+## ITCSS and prefixes: easy to understand and scale
 
-```html purple
-<template preview>
-  <div>
-    <div class="h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-violet-600">1</div>
-    <div class="h-4 rounded-md bg-violet-400 bg-stripes bg-stripes-white"></div>
-    <div class="h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-violet-600">2</div>
-    <div class="h-4 rounded-md bg-violet-400 bg-stripes bg-stripes-white"></div>
-    <div class="h-16 text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-violet-600">3</div>
-  </div>
-</template>
-
-<div class="stack">
-    <div>1/div>
-    <div>2</div>
-    <div>3</div>
-</div>
-```
-
-In this form, it looks and functions exactly like the 
-[Tailwind `space-y` utility](https://tailwindcss.com/docs/space#add-vertical-space-between-children). But there are
-several reasons why the Stack is an important layout object, and worthy of its own name and class.
-
-### Styling a relationship
-
-We're used to styling elements directly, and 'attaching' those styles to a particular element. But the `stack` object
-looks at the relationship between two elements, and styles based on that context.
-
-A simple example may be styling blocks from a headless CMS. If a paragraph follows a paragraph, you may want a smaller
-spacing than if the next section heading were to follow the paragraph.
+With the many utility classes already available, and the numerous plugins you may create or add, it can become difficult
+to see which classes are standardised layout objects, and which are focused, specific utilities.
 
 ```html lightBlue
-<template preview>
-  <div class="prose">
-    <h3>An article section title</h2>
-    <p>Some paragraph content</p>
-    <p>Some more paragraph content</p>
-    <h3>A new section!</h2>
-    <p>Some paragraph content</p>
-  </div>
-</template>
-
-<article class="stack">
-  <h3>An article section title</h2>
-  <p>Some paragraph content</p>
-  <p>Some more paragraph content</p>
-  <h3>A new section!</h2>
-  <p>Some paragraph content</p>
-</article>
+<section class="mb-4 wrapper">
+  <div class="grid grid-cols-4 gap-4 mt-6">
+      <div class="col-span-4 mb-12">
+          <div class="justify-end stack">
+            <a href="/a-great-link">
+                <div class="bg-grey-400 frame">
+                    <img alt="" src="/images/header-image.jpg">
+                </div>
+            </a>
+            <time datetime="2021-01-01">01-01-2021</time>
+          </div>
+  ...
 ```
 
-In fact, this is exactly the same concept on which the `prose` utility from
-the [tailwindcss-typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) is based on. It styles
-the relationship between elements, rather than the elements themselves, to give them their spacing.
+Notice the objects? They blend in with all the utilities. If we could pick them out, they would give us a much clearer picture of
+a pages skeletal model without having to see the page.
 
-You can add some of your own CSS to create these relationships. Here's a simple form example:
+Luckily this problem was solved years ago, with the advent of ITCSS (<abbr>Inverted Triangle CSS</abbr>).
 
-```html emerald
-<template preview>
-  <form class="stack stack--6">
-    <p class="text-gray-900">All fields are required</p>
-    <div>
-      <div class="stack stack--1">
-        <label class="font-semibold text-gray-900" for="name">Name:</label>
-        <input class="rounded-md border border-gray-300 p-2" id="name" name="name">
-      </div>
-    </div>
-    <div>
-      <div class="stack stack--1">
-        <label class="font-semibold text-gray-900" for="message">Message:</label>
-        <textarea class="rounded-md border border-gray-300 p-2" id="message" name="message"></textarea>
-      </div>
-    </div>
-  </form>
-</template>
+ITCSS is a fantastic CSS folder structure and naming convention. It logically groups classes in a way that is easy to understand
+and scales extremely well. We can apply a classname prefix to help identify the layers in HTML.
 
-.stack--form {
-  > * + * {
-    --stack-space: theme('spacing.6');
-  }
-  > label + input, 
-  > label + textarea {
-    --stack-space: theme('spacing.1');
-  }
-}
+- Settings
+- Tools
+- Generic
+- Elements
+- Objects `.o-`
+- Components `.c-`
+- Utilities `.u-`
+
+For more information on ITCSS, read [ITCSS: Scalable and Maintainable CSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/).
+
+The important part is that Tailwind classes form our Utilities layer, and Captain adds objects to the Objects layer.
+
+To differentiate them in the code, we can apply a prefix to all the classes:
+
+```html lightBlue
+<section class="o-wrapper u-mb-4">
+  <div class="u-grid u-grid-cols-4 u-gap-4 u-mt-6">
+      <div class="u-col-span-4 u-mb-12">
+          <div class="o-stack u-justify-end">
+            <a href="/a-great-link">
+                <div class="o-frame u-bg-grey-400">
+                    <img alt="" src="/images/header-image.jpg">
+                </div>
+            </a>
+            <time datetime="2021-01-01">01-01-2021</time>
+          </div>
+  ...
 ```
 
-<TipCompat>Right now, Captain doesn't implement any of these relationships for you by default, but it's something we're considering
-  for the future.</TipCompat>
+In the above example, all objects have a `o-` prefix, and all utilities have a `u-` prefix.
 
-See [customization options](#customizing) for more information on customizing the spacing between the stack items.
+Read about how to configure your prefixes on [the prefixes page](/docs/prefixes).
 
-### Stacks within stacks
+If you would prefer not to prefix your Tailwind classes, you can leave those unprefixed, and just prefix the objects, too.
 
-You can also build stacking contexts on the fly, using nested stacks.
+Lastly, if you do have a components layer, you can prefix those with `c-` as well. An example would be Captain's
+[Skip Link](/docs/skip-link) accessibility component.
 
-The above form example inline could look like:
+Harry Roberts talks about this naming convention in more detail in [BEMIT: Taking the BEM Naming Convention a Step Further](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/).
 
-```html amber
-<template preview>
-  <form class="stack stack--6">
-    <p class="text-gray-900">All fields are required</p>
-    <div>
-      <div class="stack stack--1">
-        <label class="font-semibold text-gray-900" for="name">Name:</label>
-        <input class="rounded-md border border-gray-300 p-2" id="name" name="name">
-      </div>
-    </div>
-    <div>
-      <div class="stack stack--1">
-        <label class="font-semibold text-gray-900" for="message">Message:</label>
-        <textarea class="rounded-md border border-gray-300 p-2" id="message" name="message"></textarea>
-      </div>
-    </div>
-  </form>
-</template>
+Read more about ITCSS on the [ITCSS + BEM page](/docs/itcss-bem).
 
-<form class="**stack stack--6**">
-  <p>All fields are required</p>
-  <**div**>
-    <div class="**stack stack--1**">
-      <label for="name">Name:</label>
-      <input id="name" name="name">
-    </div>
-  <**/div**>
-  <**div**>
-    <div class="**stack stack--1**">
-      <label for="message">Message:</label>
-      <textarea id="message" name="message"></textarea>
-    </div>
-  <**/div**>
-</form>
-```
+## BEM naming: ease burden of reading code
 
-When nesting stacks like this, it's important that each nested stack is wrapped in an extra element. Otherwise, it
-will change the spacing for itself as well, and will not receive the correct spacing.
+The last part of the puzzle is improving readability of all the class names.
 
-<TipGood>Wrap nested stacks in an element</TipGood>
+Some layout objects will have modifiers that change them, such as the spacing they add or their max width.
 
-```diff-html
- <div class="stack">
-   <**div**>
-     <div class="stack stack--6">
-       <p>...</p>
-       <p>...</p>
-     </div>
-   <**/div**>
- </div>
-```
+Some may even have children elements, like [`o-wrapper`](/docs/wrapper), which has classes that can be applied to break a
+child element out of the wrapper temporarily.
 
-<TipBad>Don't forget or the nested stack will not get the correct margin-top from its parent stack</TipBad>
+Code is already much harder to read than it is to write, so it's important we are able to ease this burden.
 
-```diff-html
- <div class="stack">
--  <di*>
-     <div class="stack stack--6">
-       <p>...</p>
-       <p>...</p>
-     </div>
--   </div>
- </div>
-```
+Thankfully, there's a naming convention called BEM (<abbr>Block, Element, Modifier</abbr>) that makes these classes easy to read.
 
-See [customization options](#customizing) for more information on customizing the spacing between the stack items.
-
-### Giving the Stack its own name
-
-The Stack is an extremely useful layout tool, and can be used widely across a website.
-
-That's why it's important to give it a name: it gives developer's the ability to talk about the concept and immediately
-understand, without having to explain it.
-
-It's also useful when reading source code, to give you an immediate understanding of what a particular layout is.
-
-When you see the class `stack`, you know what you're working with. This is particularly true for nested stacks, or where
-other classes within and around the stack may be doing something similar. It allows the primitive layout objects to stand out.
-
-## Modifiers
-
-### Spacing size
-
-The `stack` class also includes spacing modifiers out of the box. 
-The [default config](https://github.com/hex-digital/captaincss/blob/master/src/defaultConfig.js) creates these claseses
-from [Tailwind's `space`](https://tailwindcss.com/docs/space) config, which in turn defaults to 
-[Tailwind's global spacing](https://tailwindcss.com/docs/customizing-spacing) config.
-
-A stack without a modifier defaults to a spacing of 1rem.
-
-```html fuchsia
-<template preview>
-  <div class="stack mb-16">
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">An item</div>
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">Another item</div>
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">One more item</div>
-  </div>
-  
-  <div class="stack stack--8">
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">An item</div>
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">Another item</div>
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">One more item</div>
-  </div>
-</template>
-
-<div class="stack">
-    <div>An item</div>
-    <div>Another item</div>
-    <div>One more item</div>
-</div>
-
-<div class="stack **stack--8**">
-    <div>An item</div>
-    <div>Another item</div>
-    <div>One more item</div>
+```html lightBlue
+<div class="o-wrapper o-wrapper--lg">
+  <div class="o-wrapper__bleed">Content</div>
 </div>
 ```
 
-See [customization options](#customizing) for more information on customizing the spacing between the stack items.
+A block, like `o-wrapper` designates a particular layout object. Blocks can have modifiers, such as `o-wrapper--lg`, that
+states the block has been modified in some way - in this case, it's a wider, large version.
 
-### Reversing children order
+Elements, such as `o-wrapper__bleed`, are children of a block. They do something related to a block, and should always live inside of a block.
+They too can have modifiers.
 
-You can reverse the order of your stack using the `stack--reverse` modifier class. This will ensure the spacing is
-applied to the correct side of the elements in the stack.
+BEM makes reading and interpreting related classes much easier. All of Captain's objects implement ITCSS and BEM naming to keep them clear.
 
-```html fuchsia
-<template preview>
-  <div class="stack stack--reverse">
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">1</div>
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">2</div>
-    <div class="rounded-md bg-violet-500 text-white font-semibold py-2 px-3">3</div>
-  </div>
-</template>
+To learn more about BEM, read [getting your head ’round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
 
-<div class="stack **stack--reverse**">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-</div>
-```
-
-### Responsive
-
-The `stack` object can have its spacing and reverse-order set at different breakpoints:
-
-```html
-<div class="stack **md:stack--6 lg:stack--8 lg:stack--reverse**">
-  <div>...</div>
-  <div>...</div>
-</div>
-```
-
-## Customizing
-
-### Gap
-
-To change the gaps available to the `stack` class, specify the name and gap size using the `gap` option in the `theme.stack` section of your config file:
-
-```diff-js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    stack: (theme) => ({
-+     gap: {
-+       DEFAULT: '1rem',
-+       ...theme('space'),
-+     },
-    }),
-  },
-}
-```
-
-If you only have a single stack gap size, you can specify a single size as a shorthand:
-
-```diff-js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    stack: {
-+     gap: '1rem',
-    },
-  },
-}
-```
-
-### Variants
-
-<Variants plugin="stack" extra={[]}/>
-
-### Disabling entirely
-
-<Disabling plugin="stack"/>
+Read more on the [ITCSS + BEM page](/docs/itcss-bem).
