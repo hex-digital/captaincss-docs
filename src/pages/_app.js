@@ -88,6 +88,9 @@ export default function App({ Component, pageProps, router }) {
         />
       </Head>
       <a className="skip-link" href="#content-wrapper">Skip to content</a>
+      {router.pathname.startsWith('/docs/active-breakpoint') && (
+        <div className="c-active-breakpoint absolute"></div>
+      )}
       {router.pathname !== '/' && (
         <Header navIsOpen={navIsOpen} onNavToggle={(isOpen) => setNavIsOpen(isOpen)} />
       )}

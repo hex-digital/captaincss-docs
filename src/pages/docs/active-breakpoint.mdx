@@ -119,11 +119,13 @@ To create a block list of screens to not display, specify the screen names using
 // tailwind.config.js
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     ignoreScreens: ['sm', '2xl'],
-+   },
+    extend: {
++     activeBreakpoint: {
++       ignoreScreens: ['sm', '2xl'],
++     },
+    },
   },
-}
+};
 ```
 
 This property will default to an empty array. This property can be useful if you're using tweakpoints for specific 
@@ -141,11 +143,13 @@ To choose the corner, a prefix or suffix, specify horizontal and vertical positi
 // tailwind.config.js
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     position: ['top', 'right'],
-+   },
+    extend: {
++     activeBreakpoint: {
++       position: ['top', 'right'],
++     },
+    },
   },
-}
+};
 ```
 
 The available options are: `['top', 'left']`, `['top', 'right']`, `['bottom', 'left']` or `['bottom', 'right']`,
@@ -162,12 +166,14 @@ To create a prefix or suffix, specify the text using the `prefix` or `suffix` op
 // tailwind.config.js
 module.exports = {
   theme: {
-+   activeBreakpoint: {
-+     prefix: 'screen: ',
-+     suffix: ' 🔥',
-+   },
+    extend: {
++     activeBreakpoint: {
++       prefix: 'screen: ',
++       suffix: ' 🔥',
++     },
+    },
   },
-}
+};
 ```
 
 You may specify both, one or the other, or neither, in your config.
@@ -194,6 +200,8 @@ body::before {
 
 When doing it this way, apply any prefixes or suffixes directly in your css, as it will no longer use the ones written in your tailwind config.
 
+If you've changed the pseudo element or the class name in your tailwind.config.js, you'll need to use the changes here as well. For more info see the [using a class name section](#using-a-class-name).
+
 ### Styles
 
 You can add styles to the active breakpoint helper if you would like in several ways.
@@ -206,11 +214,13 @@ The simplest way would be straight in your `tailwind.config.js` file, by specify
 // tailwind.config.js
 module.exports = {
   theme: {
-    activeBreakpoint: {
-+     styles: (theme) => ({
-+       backgroundColor: theme('colors.indigo.500'),
-+     }),
-    }),
+    extend: {
+      activeBreakpoint: (theme) => ({
++       styles: {
++         backgroundColor: theme('colors.indigo.500'),
++       },
+      }),
+    },
   },
 }
 ```
@@ -242,9 +252,11 @@ You can specify which selector and pseudo class to apply using the `selector` an
 // tailwind.config.js
 module.exports = {
   theme: {
-    activeBreakpoint: {
-+     pseudo: 'after', // This will now use `body::after`
-    }),
+    extend: {
+      activeBreakpoint: {
++       pseudo: 'after', // This will now use `body::after`
+      }),
+    },
   },
 }
 ```
@@ -253,9 +265,11 @@ module.exports = {
 // tailwind.config.js
 module.exports = {
   theme: {
-    activeBreakpoint: {
-+     selector: '.active-breakpoint', // This will now use `.active-breakpoint::before`
-    }),
+    extend: {
+      activeBreakpoint: {
++       selector: '.active-breakpoint', // This will now use `.active-breakpoint::before`
+      }),
+    },
   },
 }
 ```

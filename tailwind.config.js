@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
-const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette')
-const { toRgba } = require('tailwindcss/lib/util/withAlphaVariable')
+const {default: flattenColorPalette} = require('tailwindcss/lib/util/flattenColorPalette')
+const {toRgba} = require('tailwindcss/lib/util/withAlphaVariable')
 
 module.exports = {
   purge: ['./src/**/*.{js,mdx}'],
@@ -54,8 +54,8 @@ module.exports = {
           css: {
             maxWidth: 'none',
             color: theme('colors.gray.500'),
-            '> :first-child': { marginTop: '-' },
-            '> :last-child': { marginBottom: '-' },
+            '> :first-child': {marginTop: '-'},
+            '> :last-child': {marginBottom: '-'},
             '&:first-child > :first-child': {
               marginTop: '0',
             },
@@ -170,8 +170,8 @@ module.exports = {
       },
       keyframes: {
         'flash-code': {
-          '0%': { backgroundColor: 'rgba(134, 239, 172, 0.25)' },
-          '100%': { backgroundColor: 'transparent' },
+          '0%': {backgroundColor: 'rgba(134, 239, 172, 0.25)'},
+          '100%': {backgroundColor: 'transparent'},
         },
       },
       animation: {
@@ -213,7 +213,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    function ({ addUtilities, theme }) {
+    function ({addUtilities, theme}) {
       const shadows = theme('boxShadow')
       addUtilities(
         Object.keys(shadows).reduce(
@@ -230,7 +230,7 @@ module.exports = {
         )
       )
     },
-    function ({ addUtilities, theme }) {
+    function ({addUtilities, theme}) {
       const utilities = {
         '.bg-stripes': {
           backgroundImage:
@@ -240,7 +240,7 @@ module.exports = {
       }
 
       const addColor = (name, color) =>
-        (utilities[`.bg-stripes-${name}`] = { '--stripes-color': color })
+        (utilities[`.bg-stripes-${name}`] = {'--stripes-color': color})
 
       const colors = flattenColorPalette(theme('backgroundColor'))
       for (let name in colors) {
@@ -259,5 +259,61 @@ module.exports = {
       addUtilities(utilities)
     },
     require('@captaincss/captaincss'),
+    function ({addUtilities, config, theme, e}) {
+
+      const screens = theme('activeBreakpoint.screens');
+      const prefix = theme('activeBreakpoint.prefix');
+      const suffix = theme('activeBreakpoint.suffix');
+      const ignoredScreens = theme('activeBreakpoint.ignoreScreens');
+      const userStyles = theme('activeBreakpoint.styles');
+
+      let selector = '.c-active-breakpoint';
+      const pseudo = theme('activeBreakpoint.pseudo');
+
+      let sanitisedSelector;
+      const firstChar = selector.charAt(0);
+      const selectorIsClassOrId = firstChar === '.' || firstChar === '#';
+
+      selector = selectorIsClassOrId ? firstChar + e(selector.substring(1)) : e(selector);
+
+      sanitisedSelector = `${selector}::${e(pseudo)}`;
+
+      const position = theme('activeBreakpoint.position');
+      const positionY = position[0];
+      const positionX = position[1];
+
+      const components = {
+        [sanitisedSelector]: Object.assign(
+          {
+            [positionX]: '0',
+            [positionY]: '0',
+            backgroundColor: '#FBF7E4',
+            border: '1px solid #F9F1E1',
+            color: '#CBB080',
+            content: `'${prefix}_ ≥ _${suffix}'`,
+            fontFamily: 'sans-serif',
+            fontSize: '14px',
+            lineHeight: '1',
+            padding: '.3em .5em',
+            position: 'fixed',
+            zIndex: '999999',
+          },
+          userStyles
+        ),
+      };
+
+      Object.entries(screens)
+        .filter(([screen]) => !ignoredScreens.includes(screen))
+        .forEach(([screen, size]) => {
+          components[`@screen ${screen}`] = {
+            [sanitisedSelector]: {
+              content: `'${prefix}${screen} ≥ ${size}${suffix}'`,
+            },
+          };
+        });
+
+      addUtilities(components);
+    },
+
   ],
 }
