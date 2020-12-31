@@ -81,6 +81,7 @@ export default function App({ Component, pageProps, router }) {
         />
         <meta key="og:type" property="og:type" content="article" />
         <meta key="og:description" property="og:description" content={description} />
+        <meta key="description" property="description" content={description} />
         <meta
           key="og:image"
           property="og:image"
