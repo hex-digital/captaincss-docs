@@ -138,18 +138,7 @@ export default function Home() {
           <figure>
             <blockquote>
               <Paragraph className="max-w-4xl mx-auto mb-6">
-                Tailwind has removed the need to overuse{' '}
-                <a
-                  href="https://adamwathan.me/css-utility-classes-and-separation-of-concerns/"
-                  className="text-light-blue-600 font-semibold"
-                  style={{
-                    boxShadow:
-                      'inset 0 -0.1666666667em 0 0 #fff, inset 0 -0.3333333333em 0 0 #bae6fd',
-                  }}
-                >
-                  “semantic class names”
-                </a>,{' '}
-                <Widont>and Captain brings back the industry standard layout objects you know and love.</Widont>
+                <Widont>Captain adds industry standard layout objects to Tailwind, plus useful development helpers and more utilities.</Widont>
               </Paragraph>
               <Paragraph className="max-w-4xl mx-auto mb-6">
                 <NextLink href="/docs">
