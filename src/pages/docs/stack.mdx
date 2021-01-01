@@ -35,8 +35,6 @@ export const custom = (
         stack
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        --stack-space: 1rem;<br />
-        --stack-reverse: 0;<br />
         display: flex;<br />
         flex-direction: column;<br />
         justify-content: flex-start;
@@ -47,7 +45,7 @@ export const custom = (
         stack--reverse
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        --stack-reverse: 1px;
+        flex-direction: column-reverse;
       </td>
     </tr>
     <tr className="border-t border-gray-200">
@@ -55,14 +53,23 @@ export const custom = (
         stack <span className="ml-1 text-purple-300">> *</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        --stack-space: 1rem;<br />
+        --stack-reverse: 0; <br />
         margin-top: calc(var(--stack-space) * calc(1 - var(--stack-reverse))); <br />
         margin-bottom: calc(var(--stack-space) * var(--tw-space-y-reverse));
+      </td>
+    </tr><tr className="border-t border-gray-200">
+      <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+        stack--reverse <span className="ml-1 text-purple-300">> *</span>
+      </td>
+      <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+        --stack-reverse: 1; <br />
       </td>
     </tr>
     {Object.keys(defaultTheme.spacing).map((spacing) => (
       <tr key={spacing} className="border-t border-gray-200">
         <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
-          stack--{spacing}
+          stack--{spacing} <span className="ml-1 text-purple-300">> *</span>
         </td>
         <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
           var(--stack-space): {defaultTheme.spacing[spacing]};
