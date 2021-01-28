@@ -1,0 +1,127 @@
+---
+title: "Fit With Your CSS"
+description: "Everyone has a preference on how they write CSS, and what's right is what you prefer. See how Captain fits with your style"
+---
+
+## <Heading hidden>Overview</Heading>
+
+Everyone writes CSS differently. Judging that you're looking at a Tailwind plugin, it's likely that you write some utility
+classes.
+
+Though maybe you like the [BEM methodology](https://css-tricks.com/bem-101/). You might be a proponent of [CubeCSS](https://cube.fyi), or prefer to use [SMACSS](http://smacss.com/). 
+Or any other CSS methodology, possibly something new I've yet to even hear of.
+
+And that's great. How you like to write CSS is the right way to write CSS.
+
+So one of CaptainCSS' core principles is to try and fit with what you already like to do.
+
+## I like utility classes
+
+Great! No setup required! Everything will be configured for you out of the box, and if you've added a
+[tailwind prefix](https://tailwindcss.com/docs/configuration#prefix), that will be added automatically too.
+
+Here's a sample of what to expect from the classes:
+
+```css blueLight
+.wrapper: {}
+.wrapper-sm: {}
+.wrapper-bleed: {}
+.wrapper-edge: {}
+.wrapper-edge-left: {}
+
+.cluster: {}
+.cluster-sm: {}
+
+.layout: {}
+.layout-gap-8: {}
+.layout-item: {}
+```
+
+## I like BEMIT
+
+Okay nice. So you're probably looking for class prefixes and BEM naming conventions. No sweat.
+
+In your `tailwind.config.js`, set it up like this:
+
+```js
+module.exports = {
+  captain: {
+    prefix: {
+      components: 'c-',
+      objects: 'o-',
+    },
+    separator: {
+      elements: '__',
+      modifiers: '--',
+    },
+  },
+};
+```
+
+And a sample of what to expect from the classes that will be produced are:
+
+```css blueLight
+.wrapper: {}
+.wrapper--sm: {}
+.wrapper__bleed: {}
+.wrapper-edge: {}
+.wrapper-edge--left: {}
+
+.cluster: {}
+.cluster--sm: {}
+
+.layout: {}
+.layout--gap-8: {}
+.layout__item: {}
+```
+
+> If you're interested in learning more about BEMIT, check out 
+> [this CSSWizardry article](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/).
+
+## I like CubeCSS
+
+Cool cool cool. Getting cubey. 
+
+Okay, in that case, in your `tailwind.config.js`, set it up like this:
+
+```js
+module.exports = {
+  captain: {
+    prefix: {
+      components: false, // Default to your tailwind prefix
+      objects: false,
+    },
+    separator: {
+      elements: '__',
+      modifiers: '-',
+    },
+  },
+};
+```
+
+We don't yet support using data attributes for cube exceptions, but are considering adding it if there is demand.
+
+And a sample of what to expect from the classes that will be produced are:
+
+```css blueLight
+.wrapper: {}
+.wrapper-sm: {}
+.wrapper__bleed: {}
+.wrapper-edge: {}
+.wrapper-edge-left: {}
+
+.cluster: {}
+.cluster--sm: {}
+
+.layout: {}
+.layout-gap-8: {}
+.layout__item: {}
+```
+
+> If you're interested in learning more about CubeCSS, check out 
+> [the cube.fyi website](https://cube.fyi/).
+
+## I like \_insert methodology here\_
+
+Nice choice! Try to configure CaptainCSS to fit how you like to write classes. And if it doesn't, let me know 
+[on GitHub](https://github.com/hex-digital/captaincss), and we can talk about how we can make it flexible enough for you.

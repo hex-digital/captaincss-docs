@@ -1,15 +1,3 @@
-import { Testimonials } from '@/components/Testimonials'
-import { DarkMode } from '@/components/home/DarkMode'
-import { ConstraintBased } from '@/components/home/ConstraintBased'
-import { BuildAnything } from '@/components/home/BuildAnything'
-import { Performance } from '@/components/home/Performance'
-import { MobileFirst } from '@/components/home/MobileFirst'
-import { StateVariants } from '@/components/home/StateVariants'
-import { ComponentDriven } from '@/components/home/ComponentDriven'
-import { Customization } from '@/components/home/Customization'
-import { ModernFeatures } from '@/components/home/ModernFeatures'
-import { EditorTools } from '@/components/home/EditorTools'
-import { ReadyMadeComponents } from '@/components/home/ReadyMadeComponents'
 import { Search } from '@/components/Search'
 import { BigText, InlineCode, Paragraph, Widont } from '@/components/home/common'
 import { useEffect, useState } from 'react'
@@ -73,14 +61,14 @@ export default function Home() {
         <meta
           key="twitter:title"
           name="twitter:title"
-          content="CaptainCSS - Rapidly build layouts that scale with elegance, the way CSS intended."
+          content="CaptainCSS - Rapidly build layouts and compositions that scale with elegance."
         />
         <meta
           key="og:title"
           property="og:title"
-          content="CaptainCSS - Rapidly build layouts that scale with elegance, the way CSS intended."
+          content="CaptainCSS - Rapidly build layouts and compositions that scale with elegance."
         />
-        <title>CaptainCSS - Rapidly build layouts that scale with elegance, the way CSS intended - A Tailwind Plugin</title>
+        <title>CaptainCSS - Rapidly build layouts and compositions that scale with elegance - A Tailwind Plugin</title>
       </Head>
       <header className="relative z-10 max-w-screen-lg xl:max-w-screen-xl mx-auto">
         <div className="px-4 sm:px-6 md:px-8 mb-14 sm:mb-20 xl:mb-8">
@@ -112,13 +100,13 @@ export default function Home() {
             <span className="inline-block text-4xl xl:text-4xl font-medium text-gray-900 tracking-tight">CaptainCSS</span>
           </div>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl leading-none font-extrabold tracking-tight text-gray-900 mt-10 mb-8 sm:mt-14 sm:mb-10">
-            Rapidly build layouts that scale with elegance, the way CSS intended.
+            Rapidly build layouts and compositions that scale with elegance.
           </h1>
           <p className="max-w-screen-lg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11">
             A toolbox packed with battle hardened objects like <InlineCode>Stack</InlineCode>,{' '}
             <InlineCode>Cluster</InlineCode>, <InlineCode>Wrapper</InlineCode>, and{' '}
             <InlineCode>Frame</InlineCode> to give you and your team expressive
-            layout lingo for objects you probably already use, but didn't even know it.
+            layout lingo for objects you might already be using and not even know it.
           </p>
           <div className="flex flex-wrap space-y-4 sm:space-y-0 sm:space-x-4 text-center">
             <NextLink href="/docs">
@@ -138,7 +126,7 @@ export default function Home() {
           <figure>
             <blockquote>
               <Paragraph className="max-w-4xl mx-auto mb-6">
-                <Widont>Captain adds industry standard layout objects to Tailwind, plus useful development helpers and more utilities.</Widont>
+                <Widont>Captain adds highly reusable layout compositions to Tailwind, plus useful development helpers and more utilities.</Widont>
               </Paragraph>
               <Paragraph className="max-w-4xl mx-auto mb-6">
                 <NextLink href="/docs">

@@ -1,84 +1,22 @@
 ---
 title: "Common Language"
-description: "CaptainCSS brings back a common language for layout objects, making them easier to talk about."
+description: "CaptainCSS helps provide a common language for layout objects, making them easier to talk about."
 ---
 
+## <Heading hidden>Why use common names</Heading>
 
-import { TipGood, TipBad, TipCompat } from '@/components/Tip'
-
-## <Heading hidden>Common Language Overview</Heading>
-
-One of CaptainCSS' core concepts is to provide a shared language for common, repetitive layout objects. 
-
-While Tailwind has removed the need to overuse [semantic class names](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/),
-it has also meant we've lost some terminology that was becoming industry standard.
-
-As an example, see below a common layout object, created first using Tailwind utilities, and then later using an industry-standard
-layout object.
-
-Can you tell what the layout object is from the first snippet? **What would you call it** if you wanted to talk about it with another developer?
-
-<TipBad>Using Tailwind to re-create common layout objects</TipBad>
-
-```html lightBlue
-<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
-  ...
-</div>
-```
-
-<TipGood>Using battle hardened, industry standard layout objects</TipGood>
-
-```html lightBlue
-<div class="wrapper">
-  ...
-</div>
-```
-
-The obvious choice is to move the first snippet into a component, perhaps called a `BaseWrapper`.
-
-However, this too has several downsides:
-
-- It means another boilerplate component that needs to be created at the start of each project
-- It's not easily shared between projects that use different frontend frameworks or application
-- It's not easily configurable in tailwind.config.js, and so not easily shared between tailwind projects
-- It could be called something non-standard, like Container, MaxWidth or ContentBox
-- It's no longer easily standardised between projects, as it's a project specific component
-- It runs the risk of being modified, as any component does, which may have wide reaching consequences for the project
-
-The next logical step is to extract it to a Tailwind plugin to counteract all the above points, and that's exactly what Captain is.
-
-A set of layout objects, battle hardened and in use across hundreds of websites, now sat atop Tailwind and its brilliant ecosystem.
-
-In fact, **Tailwind already has a layout object** itself: [The Container](https://tailwindcss.com/docs/container).
-
-Read more on the [Common Language page](/docs/common-language).
-
-### What are objects?
-
-A brief intermission to talk about objects, or layout objects.
-
-Layout objects are the reusable abstractions of repetitive, shared and purely structural aspects of UI. This means things
-like wrappers, containers, stacks, clusters, etc.
-
-"It allows them to exist as non-cosmetic styles that handle the skeletal aspect of a lot of UI components, without ever actually
-looking like designed 'things'." - [Harry Roberts - CSS Wizardry](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/).
-
-In other words, adding layout objects to a page on their own wouldn't show anything, but when putting content in to them, they
-shape how the content sits on the page. They define the layout of that content.
-
-## Why naming is important
-
-More than likely, you're already using one or more of these layout objects. After all, they've been around for a long time.
-
-It's possible though, that you are building them from scratch each time you work on a project. Or that your team does not 
-have a single, shared name for each object.
-
-CaptainCSS provides both the implementation for these objects, and the shared language that comes with it.
+One of CaptainCSS' core concepts is to provide a shared language for common, repetitive layout objects and compositions.
 
 Naming concepts and patterns is what makes them easy to talk about. Without a common name, developers would need to re-explain 
 a particular concept each time they wanted to talk about it, or risk not being on the same page.
 
-Have a look through the Layout Objects section of the documentation to see common objects such as [the Wrapper](/docs/wrapper), [the Stack](/docs/stack) or
-[the Cluster](/docs/cluster). Think about how you would have approached such a design on previous projects, and compare it to how you can do it with Captain.
+It's the same principle for why design patterns have names like Dependency Injection or Containers. If you know about them,
+you can talk about them without explaining them. If you don't know about them, it's easy to google as there's lots of articles on the subject using
+the same name.
 
-We hope you'll see how easy Captain makes it.
+## All of Captain's compositions have names
+
+And we hope they help you to talk about these compositions with other developers and your own teams.
+
+Have a look through the Layout Objects section of the documentation to see common objects such as [the Wrapper](/docs/wrapper), [the Stack](/docs/stack) or
+[the Cluster](/docs/cluster).

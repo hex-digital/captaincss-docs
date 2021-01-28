@@ -16,8 +16,9 @@ export const documentationNav = {
   ],
   'Core Concepts': [
     pages['what-is-captain'],
+    pages['layout-compositions'],
     pages['common-language'],
-    pages['itcss-bem'],
+    pages['fit-with-your-css'],
   ],
   Customization: [
     pages['configuration'],

@@ -1,0 +1,85 @@
+---
+title: "Layout Compositions"
+description: "Layout Compositions are the core addition of CaptainCSS. Come see how they could make your life easier"
+---
+
+## <Heading hidden>Wrapper composition</Heading>
+
+There are a number of layout compositions we find ourselves creating time and again. Some are commonly recognised, and siphoned off to
+components or classes. And some we don't recognise, but re-implement in specific contexts each time we need it.
+
+Take a wrapper for example. We could build it out of utility classes like this:
+
+```html lightBlue
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
+  ...
+</div>
+```
+
+You might have a different name for this. Perhaps a container, or a content stripe. Whatever you call it, I think it's
+quite likely you use it on the majority of your projects. I certainly do, and it's one of the first things I would create
+when starting a project from scratch.
+
+In order to get away from repeating these class names everywhere, we can put it into a Web Component or a JS Framework component.
+
+```html lightBlue
+<template>
+  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
+    <slot />
+  </div>
+</template>
+```
+
+And this is simple enough for a basic wrapper. I think a lot of people know what a wrapper is and how to use it. I think
+it's a common composition. Captain provides it as a single class, `.wrapper`, and bakes its configuration into `tailwind.config.js`. 
+Super easy. Use it anywhere, on any project, with any framework (or none).
+
+But how many more compositions do you use? If you've never thought about this, then I think there are likely to be a few 
+that you use, perhaps under different names, and I think there are likely to be ones you create each time you need
+a layout that could be generalised into a composition.
+
+## What are compositions?
+
+A brief intermission to talk about compositions, or layout objects.
+
+Layout objects are the reusable abstractions of repetitive, shared and purely structural aspects of UI. This means things
+like wrappers, containers, stacks, clusters, etc.
+
+**"It allows them to exist as non-cosmetic styles that handle the skeletal aspect of a lot of UI components, without ever actually
+looking like designed 'things'."** - [Harry Roberts - CSS Wizardry](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/).
+
+In other words, adding layout objects to a page on their own wouldn't show anything, but when putting content in to them, they
+shape how the content sits on the page. They define the layout of that content.
+
+## Another composition - Cluster
+
+Another composition that I hadn't thought about until I read about it on [Every Layout](https://every-layout.dev)
+was the [Cluster](/docs/cluster). The cluster allows the positioning of elements, like links or buttons, that space themselves
+evenly apart from each other, even when they wrap, and without any extra spacing around it.
+
+Before having the Cluster in my arsenal, I would have created a new component, made it `display: flex` and `flex-wrap: wrap`. Then 
+tried to add margins to it, made sure they didn't apply to the first child, and if it wrapped then add a top margin, but not
+to the first row, and on and on...
+
+And I would do that each time I needed a set of buttons next to each other, or some list items, or whatever it was. I
+didn't have this reusable composition that had this problem solved already.
+
+But with the cluster, it's as simple as throwing the buttons into a `cluster` composition, and they'll be perfectly spaced,
+horizontally and vertically with no headaches, everytime.
+
+```html lightBlue
+<div class="cluster">
+  <div> <!-- Required until  -->
+    <button>Act Now</button>
+    <button>Do something else</button>
+  </div>
+</div>
+```
+
+And this isn't a new, radical concept for Tailwind. In fact, **Tailwind already has a composition** itself: [The Container](https://tailwindcss.com/docs/container).
+It's creating standards under a common name and implementation.
+
+Take a look at the rest of the Objects in Captain and see if there's any you already use, and if there's any you hadn't
+thought of before. And if you have more to add, come talk about them [in GitHub](https://github.com/hex-digital/captaincss).
+
+Read more about the benefits of a common language on the [Common Language page](/docs/common-language).

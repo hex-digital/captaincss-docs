@@ -1,9 +1,7 @@
 ---
 title: "What is Captain"
-description: "And why the heck should you use it."
+description: "And why we'd love for you to try it."
 ---
-
-import {TipBad, TipGood} from '@/components/Tip'
 
 ## <Heading hidden>Overview</Heading>
 
@@ -11,172 +9,17 @@ Captain is a plugin for Tailwind, that provides new utilities for layouts, acces
 
 Everything you expect from Tailwind is available with Captain, including theme configuration, variations, plugin disabling and more.
 
-But more than that, Captain builds on Tailwind to turn it into the truly scalable, industry standard CSS framework that it should be.
+Most importantly, **CaptainCSS is built with the aim of fitting anyone's style of writing CSS**. Whether that's just using Tailwind straight up as a utility framework,
+or if you prefer [CubeCSS](https://cube.fyi/), [BEMIT](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) 
+or one of the other successful and acclaimed methodologies, CaptainCSS aims to accommodate you.
 
-CaptainCSS is built on three core concepts:
+## CaptainCSS is built on three core concepts
 
-- Providing a **common language** for developers to use
-- Providing a structure that is **easy to understand and scales exceptionally well**
-- Providing conventions that **ease the burden of reading and understanding code**
+- Provide **layout compositions and tools** that are useful no matter what kind of project you're working on 
+- Provide a **common language** for developers to use when talking about these common patterns 
+- And most importantly, **fit with how you like to write CSS**
 
-## Common Language
+We recognise there is no one right or best way to write CSS, so we've tried to make CaptainCSS as flexible as possible. No
+pressure to learn anything new or change what works for you.
 
-While Tailwind has removed the need to overuse [semantic class names](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/),
-it has also meant we've lost some terminology that was becoming industry standard.
-
-As an example, see below a common layout object, created first using Tailwind utilities, and then later using an industry-standard
-layout object.
-
-Can you tell what the layout object is from the first snippet? **What would you call it** if you wanted to talk about it with another developer?
-
-<TipBad>Using Tailwind to re-create common layout objects</TipBad>
-
-```html lightBlue
-<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
-  ...
-</div>
-```
-
-<TipGood>Using battle hardened, industry standard layout objects</TipGood>
-
-```html lightBlue
-<div class="wrapper">
-  ...
-</div>
-```
-
-The obvious choice is to move the first snippet into a component, perhaps called a `BaseWrapper`.
-
-However, this too has several downsides:
-
-- It means another boilerplate component that needs to be created at the start of each project
-- It's not easily shared between projects that use different frontend frameworks or application
-- It's not easily configurable in tailwind.config.js, and so not easily shared between tailwind projects
-- It could be called something non-standard, like Container, MaxWidth or ContentBox
-- It's no longer easily standardised between projects, as it's a project specific component
-- It runs the risk of being modified, as any component does, which may have wide reaching consequences for the project
-
-The next logical step is to extract it to a Tailwind plugin to counteract all the above points, and that's exactly what Captain is.
-
-A set of layout objects, battle hardened and in use across hundreds of websites, now sat atop Tailwind and its brilliant ecosystem.
-
-And this isn't a new, radical concept. In fact, **Tailwind already has a layout object** itself: [The Container](https://tailwindcss.com/docs/container).
-It's just creating standards under a common name and implementation.
-
-Read more on the [Common Language page](/docs/common-language).
-
-### What are objects?
-
-A brief intermission to talk about objects, or layout objects.
-
-Layout objects are the reusable abstractions of repetitive, shared and purely structural aspects of UI. This means things
-like wrappers, containers, stacks, clusters, etc.
-
-"It allows them to exist as non-cosmetic styles that handle the skeletal aspect of a lot of UI components, without ever actually
-looking like designed 'things'." - [Harry Roberts - CSS Wizardry](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/).
-
-In other words, adding layout objects to a page on their own wouldn't show anything, but when putting content in to them, they
-shape how the content sits on the page. They define the layout of that content.
-
-## Prefixes: easy to understand and scale
-
-But Captain has another optional addition.
-
-With the many utility classes already available, and the numerous plugins you may create or add, it can become difficult
-to see which classes are standardised layout objects, and which are focused, specific utilities.
-
-```html lightBlue
-<section class="mb-4 wrapper">
-  <div class="grid grid-cols-4 gap-4 mt-6">
-      <div class="col-span-4 mb-12">
-          <div class="justify-end stack">
-            <a href="/a-great-link">
-                <div class="bg-grey-400 frame">
-                    <img alt="" src="/images/header-image.jpg">
-                </div>
-            </a>
-            <time datetime="2021-01-01">01-01-2021</time>
-          </div>
-  ...
-```
-
-Notice the objects? They blend in with all the utilities. If we could pick them out, they would give us a much clearer picture of
-a pages skeletal model without having to see the page.
-
-Luckily this problem was solved years ago, with the advent of ITCSS (<abbr>Inverted Triangle CSS</abbr>).
-
-ITCSS is a fantastic CSS folder structure and naming convention. It logically groups classes in a way that is easy to understand 
-and scales extremely well. We can apply a classname prefix to help identify the layers in HTML.
-
-- Settings
-- Tools
-- Generic
-- Elements
-- Objects `.o-`
-- Components `.c-`
-- Utilities `.u-`
-
-For more information on ITCSS, read [ITCSS: Scalable and Maintainable CSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/).
-
-The important part is that Tailwind classes form our Utilities layer, and Captain adds objects to the Objects layer.
-
-To differentiate them in the code, we can apply a prefix to all the classes:
-
-```html lightBlue
-<section class="o-wrapper u-mb-4">
-  <div class="u-grid u-grid-cols-4 u-gap-4 u-mt-6">
-      <div class="u-col-span-4 u-mb-12">
-          <div class="o-stack u-justify-end">
-            <a href="/a-great-link">
-                <div class="o-frame u-bg-grey-400">
-                    <img alt="" src="/images/header-image.jpg">
-                </div>
-            </a>
-            <time datetime="2021-01-01">01-01-2021</time>
-          </div>
-  ...
-```
-
-In the above example, all objects have a `o-` prefix, and all utilities have a `u-` prefix.
-
-Read about how to configure your prefixes on [the prefixes page](/docs/prefixes).
-
-If you would prefer not to prefix your Tailwind classes, you can leave those unprefixed, and just prefix the objects, too.
-
-Lastly, if you do have a components layer, you can prefix those with `c-` as well. An example would be Captain's
-[Skip Link](/docs/skip-link) accessibility component.
-
-Harry Roberts talks about this naming convention in more detail in [BEMIT: Taking the BEM Naming Convention a Step Further](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/).
-
-Read more about ITCSS on the [ITCSS + BEM page](/docs/itcss-bem).
-
-## BEM naming: ease burden of reading code
-
-The last part of the puzzle is improving readability of all the class names.
-
-Some layout objects will have modifiers that change them, such as the spacing they add or their max width.
-
-Some may even have children elements, like [`o-wrapper`](/docs/wrapper), which has classes that can be applied to break a
-child element out of the wrapper temporarily.
-
-Code is already much harder to read than it is to write, so it's important we are able to ease this burden.
-
-Thankfully, there's a naming convention called BEM (<abbr>Block, Element, Modifier</abbr>) that makes these classes easy to read.
-
-```html lightBlue
-<div class="o-wrapper o-wrapper--lg">
-  <div class="o-wrapper__bleed">Content</div>
-</div>
-```
-
-A block, like `o-wrapper` designates a particular layout object. Blocks can have modifiers, such as `o-wrapper--lg`, that
-states the block has been modified in some way - in this case, it's a wider, large version.
-
-Elements, such as `o-wrapper__bleed`, are children of a block. They do something related to a block, and should always live inside of a block.
-They too can have modifiers.
-
-BEM makes reading and interpreting related classes much easier. All of Captain's objects implement ITCSS and BEM naming to keep them clear.
-
-To learn more about BEM, read [getting your head ’round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) 
-
-Read more on the [ITCSS + BEM page](/docs/itcss-bem).
+Read more about Captain in the following sections.
