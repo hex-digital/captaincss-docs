@@ -30,6 +30,7 @@ export const documentationNav = {
     pages['stack'],
     pages['frame'],
     pages['wrapper'],
+    pages['wrapper-edge'],
   ],
   Utilities: [
     // pages['blend-mode']

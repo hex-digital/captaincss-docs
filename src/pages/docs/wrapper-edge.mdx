@@ -1,0 +1,299 @@
+---
+title: "Wrapper Half"
+description: "An object that applies a wrapper to one side of an element. Useful for 50% content next to a 50% bleeding edge image."
+features:
+  customizable: true
+---
+
+import { Variants } from '@/components/Variants'
+import { Disabling } from '@/components/Disabling'
+
+export const screens = {
+  'md': {
+    screen: '768px',
+    padding: '2rem',
+  },
+  'lg': {
+    screen: '1024px',
+    padding: '3.5rem',
+  },
+  'xl': {
+    screen: '1280px',
+    padding: '5rem',
+  }, 
+};
+
+export const classes = (
+  <table className="w-full text-left border-collapse">
+    <colgroup>
+      <col className="w-1/4" />
+      <col className="w-1/4" />
+      <col className="w-1/2" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+          <div className="pb-2 border-b border-gray-200">Class</div>
+        </th>
+        <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+          <div className="pb-2 border-b border-gray-200">Breakpoint</div>
+        </th>
+        <th className="z-20 sticky top-0 text-sm font-semibold text-gray-600 bg-white p-0">
+          <div className="pb-2 border-b border-gray-200">Properties</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody className="align-baseline">
+      <tr>
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper-edge
+        </td>
+        <td className="py-2 text-xs italic">
+          None
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          max-width: 40rem;
+        </td>
+      </tr>
+      <tr>
+        <td rowSpan={Object.keys(screens).length + 1} className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper-edge--left
+        </td>
+        <td className="py-2 border-t border-gray-200 font-mono text-xs">
+          None
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre border-t border-gray-200">
+          margin-left: auto;<br />
+          margin-right: unset;<br />
+          padding-right: unset;
+        </td>
+      </tr>
+      {Object.keys(screens).map((screen) => (
+        <tr key={`left${screen.screen}`}>
+          <td className="py-2 border-t border-gray-200 font-mono text-xs">
+            {screen} <span className="font-sans italic">({screens[screen].screen})</span>
+          </td>
+          <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre border-t border-gray-200">
+            padding-left: {screens[screen].padding};
+          </td>
+        </tr>
+      ))}
+      <tr>
+        <td rowSpan={Object.keys(screens).length + 1} className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper-edge--right
+        </td>
+        <td className="py-2 border-t border-gray-200 font-mono text-xs">
+          None
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre border-t border-gray-200">
+          margin-left: unset;<br />
+          margin-right: auto;<br />
+          padding-left: unset;
+        </td>
+      </tr>
+      {Object.keys(screens).map((screen) => (
+        <tr key={`right${screen.screen}`}>
+          <td className="py-2 border-t border-gray-200 font-mono text-xs">
+            {screen} <span className="font-sans italic">({screens[screen].screen})</span>
+          </td>
+          <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre border-t border-gray-200">
+            padding-right: {screens[screen].padding};
+          </td>
+        </tr>
+      ))}
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper-edge--sm
+        </td>
+        <td className="py-2 text-xs italic">
+          -
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          max-width: 30rem;
+        </td>
+      </tr>
+      <tr className="border-t border-gray-200">
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          wrapper-edge--lg
+        </td>
+        <td className="py-2 text-xs italic">
+          -
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          max-width: 45rem;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+)
+
+## Usage
+
+The `wrapper-edge` object is used when you want content to line up with your wrapper, but only on one side, or where you have content split into
+two or more columns and can't set the whole container as a wrapper.
+
+Common use cases for this composition are when you have a bleeding image on one side and text content on the other.
+
+Using a `wrapper-edge` allows your content to remain wrapped and padded off the screen edge, while your image still bleeds to the edge of the screen.
+
+```html
+<div class="wrapper-edge wrapper-edge--left w-1/2">
+    Wrapped and padded text content
+</div>
+<div class="w-1/2">
+    <img alt="A bleeding width image" src="great-image.jpg">
+</div>
+```
+
+You may also want these containers to stack on smaller screen sizes, in which case the text content should be
+wrapped and padded normally on both sides. To achieve this, we can use a `wrapper` on smaller screens, and switch to
+a `wrapper-edge` on larger screens:
+
+The `wrapper-edge` class will apply a max-width of half your `wrapper` width. If your `wrapper` is set to
+`80rem`, your `wrapper-edge` will be `max-width: 40rem`.
+
+```html
+<div class="o-wrapper md:o-wrapper-edge md:o-wrapper-edge--left w-1/2">
+    Wrapped and padded text content
+</div>
+<div class="w-1/2">
+    <img alt="A bleeding width image" src="great-image.jpg">
+</div>
+```
+
+See [customization options](#customizing) for more information on customizing the wrapper.
+
+### Modifiers
+
+#### Left or Right
+
+The `wrapper-edge` also applies a margin and a padding to the correct side, but to do this it needs to know if this
+part is on the left edge or the right edge.
+
+```html
+<!-- Margin and Padding applied to left edge -->
+<div class="wrapper-edge **wrapper-edge--left**">
+  <!-- ... -->
+</div>
+<!-- Margin and Padding applied to right edge -->
+<div class="wrapper-edge **wrapper-edge--right**">
+  <!-- ... -->
+</div>
+```
+
+#### Size
+
+Like the `wrapper`, the `wrapper-edge` has the same size modifiers to increase or decrease the max-width of the container.
+
+```html
+<!-- Less padding applied to the left side, as it's --sm -->
+<div class="wrapper-edge wrapper-edge--left **wrapper-edge--sm**">
+  <!-- ... -->
+</div>
+<!-- More padding applied to the right side, as it's --lg -->
+<div class="wrapper-edge wrapper-edge--right **wrapper-edge--lg**">
+  <!-- ... -->
+</div>
+```
+
+The modifier names and width sizes can be overridden or extended in your tailwind config. See [customization options](#customizing) below.
+
+## Customizing
+
+### Max Width
+
+The max-widths available to the `wrapper-edge` object are inherited from the `wrapper` object.
+
+Therefore, to change the max-widths available to the `wrapper-edge` class, specify the name and width using the `maxWidth` 
+option in the `theme.wrapper` section of your config file:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     maxWidth: {
++       DEFAULT: '80rem',
++       sm: '70rem', 
++     },
+    },
+  },
+}
+```
+
+If you only have a single wrapper width, you can specify a single width as a shorthand:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     maxWidth: '80rem',
+    },
+  },
+}
+```
+
+### Horizontal padding
+
+The padding values available to the `wrapper-edge` object are inherited from the `wrapper` object.
+
+Therefore, to change the horizontal padding added to the `wrapper` class, specify the breakpoint name and padding amount you'd like using the `padding` option in the `theme.wrapper` section of your config file:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     padding: {
++       DEFAULT: '1rem',
++       md: '2rem',
++       lg: '3.5rem',
++     },
+    },
+  },
+}
+```
+
+Any breakpoints not defined will inherit from the previous breakpoint's value in ascending order, or the default if there is nothing lower specified.
+
+If you don't want a different padding at each breakpoint, you can specify a single padding value to use for all breakpoints instead:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     padding: '1rem',
+    },
+  },
+}
+```
+
+You can use values from the rest of the theme config as well, either by using the theme helper or by importing the default config:
+
+```diff-js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    wrapper: {
++     padding: (theme) => ({
++       DEFAULT: theme('spacing.4'),
++       'md': theme('spacing.6'), 
++     }),
+    },
+  },
+};
+```
+
+Learn more about this at [Tailwind's docs for referencing other values](https://tailwindcss.com/docs/theme#referencing-other-values).
+
+### Variants
+
+<Variants plugin="wrapperEdge" extra={[]} />
+
+There is also the `wrapperEdgeSides` variant, which also defaults to `['responsive']`.
+
+### Disabling entirely
+
+<Disabling plugin="wrapperEdge" />
