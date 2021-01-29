@@ -1,0 +1,69 @@
+---
+title: Prefix Configuration
+shortTitle: Prefixes
+description: Customizing the default prefixes for your project.
+---
+
+
+## <Heading hidden>Overview</Heading>
+
+As seen in one of our [Core Concepts: Fit with Your CSS](/docs/fit-with-your-css), Captain's separators are customisable
+
+Captain has two kinds of separators: those that specify something is an extension of an object, and should be used as a child element inside of it,
+and those that specify it is a modification of an object, and should be used alongside it on the same element.
+
+We call these Element separators, and Modifier separators, respectively. 
+
+By default, both separators are set to `-`.
+
+```js lightBlue
+// tailwind.config.js
+module.exports = {
+  captain: {
+    separator: {
+      elements: '-',
+      modifiers: '-',
+    },
+  },
+  ...
+};
+```
+
+This will produce output like:
+
+```css
+.wrapper: {}
+.wrapper-sm: {}
+.wrapper-bleed: {}
+
+<div class="wrapper wrapper-sm">
+  <div class="wrapper-bleed">...</div>
+</div>
+```
+
+These can be changed to whatever you prefer. For example, BEM would look like this:
+
+```js lightBlue
+// tailwind.config.js
+module.exports = {
+  captain: {
+    separator: {
+      elements: '__',
+      modifiers: '--',
+    },
+  },
+  ...
+};
+```
+
+This will produce output like:
+
+```css
+.wrapper: {}
+.wrapper--sm: {}
+.wrapper__bleed: {}
+
+<div class="wrapper wrapper--sm">
+  <div class="wrapper__bleed">...</div>
+</div>
+```

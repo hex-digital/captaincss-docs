@@ -7,18 +7,15 @@ description: Customizing the default prefixes for your project.
 
 ## <Heading hidden>Overview</Heading>
 
-As discussed in one of our [Core Concepts: ITCSS + BEM](/docs/itcss-bem), prefixing classes is a recommended behaviour.
-
-However, to fit more naturally into Tailwind, Captain will inherit the prefix you've set for your tailwind classes by default,
-from `config.prefix`.
+Captain will inherit the prefix you've set for your tailwind classes by default, from `config.prefix`.
 
 ```js lightBlue
 // tailwind.config.js
 module.exports = {
   captain: {
     prefix: {
-      objects: '', // A falsey value will default to config('prefix') instead
-      components: '',
+      objects: false, // A falsey value will default to config('prefix') instead
+      components: false,
     },
   },
   ...

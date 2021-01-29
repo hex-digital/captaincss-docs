@@ -24,6 +24,7 @@ export const documentationNav = {
     pages['configuration'],
     pages['theme'],
     pages['prefixes'],
+    pages['separators'],
   ],
   Layout: [
     pages['cluster'],
