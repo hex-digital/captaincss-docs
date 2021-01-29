@@ -35,7 +35,8 @@ export const custom = (
         cluster
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        --cluster-space: 1rem;<br/>
+        --cluster-x-space: 1rem;<br/>
+        --cluster-y-space: 1rem;<br/>
         overflow: hidden;
       </td>
     </tr>
@@ -48,7 +49,8 @@ export const custom = (
         display: flex;<br/>
         flex-wrap: wrap;<br/>
         justify-content: flex-start;<br/>
-        margin: calc((var(--cluster-space) / 2) * -1);
+        margin: calc((var(--cluster-y-space) / 2) * -1)<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calc((var(--cluster-x-space) / 2) * -1);
       </td>
     </tr>
     <tr className="border-t border-gray-200">
@@ -56,16 +58,38 @@ export const custom = (
         cluster <span className="ml-1 text-purple-300">> * > *</span>
       </td>
       <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-        margin: calc(var(--cluster-space) / 2);
+        margin: calc(var(--cluster-y-space) / 2)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calc(var(--cluster-x-space) / 2);
       </td>
     </tr>
     {Object.keys(defaultTheme.spacing).map((spacing) => (
-      <tr className="border-t border-gray-200">
+      <tr className="border-t border-gray-200" key={spacing}>
         <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
           cluster--{spacing}
         </td>
         <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
-          var(--cluster-space): {defaultTheme.spacing[spacing]};
+          --cluster-x-space: {defaultTheme.spacing[spacing]};<br />
+          --cluster-y-space: {defaultTheme.spacing[spacing]};
+        </td>
+      </tr>
+    ))}
+    {Object.keys(defaultTheme.spacing).map((spacing) => (
+      <tr className="border-t border-gray-200" key={`x-${spacing}`}>
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          cluster--x-{spacing}
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          --cluster-x-space: {defaultTheme.spacing[spacing]};
+        </td>
+      </tr>
+    ))}
+    {Object.keys(defaultTheme.spacing).map((spacing) => (
+      <tr className="border-t border-gray-200" key={`y-${spacing}`}>
+        <td className="py-2 font-mono text-xs text-violet-600 whitespace-nowrap">
+          cluster--y-{spacing}
+        </td>
+        <td className="py-2 font-mono text-xs text-light-blue-600 whitespace-pre">
+          --cluster-y-space: {defaultTheme.spacing[spacing]};
         </td>
       </tr>
     ))}
@@ -89,7 +113,7 @@ This makes the cluster perfectly space the items, without adding any extra margi
 <template preview>
   <p class="text-sm text-indigo-600 mb-4">Items are evenly spaced on all sides, even when wrapping</p>
   <div class="cluster">
-    <div>
+    <div> <!-- Extra div required unless using { support: { cssFlexGap } } -->
       <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">An item</div>
       <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">Another item</div>
       <div class="rounded-md bg-indigo-500 text-white font-semibold py-2 px-3">One more item</div>
@@ -160,7 +184,7 @@ the container is completely hidden and will not affect any other elements.
 </template>
 
 <div class="cluster">
-    <div>
+    <div> <!-- Extra div required unless using { support: { cssFlexGap } } -->
       <div>1</div>
       <div>2</div>
       <div>3</div>
@@ -194,9 +218,9 @@ the container is completely hidden and will not affect any other elements.
 If you're using any kind of component-based framework or partials, you can easily move this extra div into a `Cluster`
 component, which allows you to completely forget about it.
 
-<TipCompat>Hopefully we will soon no longer need the negative margin, and the extra containing 
-  element that comes with it. This is because of the `gap` property that automatically puts space only between child 
-  elements. At time of writing, it's just landed in latest versions of modern browsers, but we don't yet support it.</TipCompat>
+<TipCompat>When support for Flex Gap (`gap`) becomes wider, we can drop this extra element. Support for it in Captain is already available.
+  To make use of it early, add `flexGap` to the `captain.support` object in `tailwind.config.js`. At time of writing it's
+  unavailable in Safari, and only recently in Chrome.</TipCompat>
 
 ### Semantic markup
 
@@ -271,6 +295,38 @@ A cluster without a modifier defaults to a spacing of 1rem.
 </div>
 
 <div class="cluster **cluster--8**">
+    <div>
+      <div>An item</div>
+      <div>Another item</div>
+      <div>One more item</div>
+      <div>Another one</div>
+      <div>There are now 5 items in this cluster</div>
+      <div>Here is item six</div>
+      <div>Two more</div>
+      <div>Enough</div>
+    </div>
+</div>
+```
+
+You can also size x and y spacing independently, using classes like `cluster--x-8` and `cluster--y-10`.
+
+```html lightBlue
+<template preview>
+  <div class="cluster cluster--x-6 cluster--y-2">
+    <div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">An item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Another item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">One more item</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Another one</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">There are now 5 items in this cluster</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Here is item six</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Two more</div>
+      <div class="rounded-md bg-blue-400 text-white font-semibold py-2 px-3">Enough</div>
+    </div>
+  </div>
+</template>
+
+<div class="cluster **cluster--x-6 cluster--y-2**">
     <div>
       <div>An item</div>
       <div>Another item</div>

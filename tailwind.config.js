@@ -6,6 +6,19 @@ const {toRgba} = require('tailwindcss/lib/util/withAlphaVariable')
 module.exports = {
   purge: ['./src/**/*.{js,mdx}'],
   darkMode: 'class',
+  captain: {
+    support: {
+      flexGap: false, // https://caniuse.com/flexbox-gap
+    },
+    prefix: {
+      objects: false,
+      components: false,
+    },
+    separator: {
+      elements: '__',
+      modifiers: '--',
+    },
+  },
   theme: {
     colors: {
       transparent: 'transparent',

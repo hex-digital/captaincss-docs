@@ -29,12 +29,13 @@ Here's a sample of what to expect from the classes:
 .wrapper-edge: {}
 .wrapper-edge-left: {}
 
-.cluster: {}
-.cluster-sm: {}
-
 .layout: {}
 .layout-gap-8: {}
 .layout-item: {}
+
+.skip-link: {}
+
+.font-bold: {}
 ```
 
 ## I like BEMIT
@@ -55,24 +56,26 @@ module.exports = {
       modifiers: '--',
     },
   },
+  prefix: 'u-',
 };
 ```
 
 And a sample of what to expect from the classes that will be produced are:
 
 ```css blueLight
-.wrapper: {}
-.wrapper--sm: {}
-.wrapper__bleed: {}
-.wrapper-edge: {}
-.wrapper-edge--left: {}
+.o-wrapper: {}
+.o-wrapper--sm: {}
+.o-wrapper__bleed: {}
+.o-wrapper-edge: {}
+.o-wrapper-edge--left: {}
 
-.cluster: {}
-.cluster--sm: {}
+.o-layout: {}
+.o-layout--gap-8: {}
+.o-layout__item: {}
 
-.layout: {}
-.layout--gap-8: {}
-.layout__item: {}
+.c-skip-link: {}
+
+.u-font-bold: {}
 ```
 
 > If you're interested in learning more about BEMIT, check out 
@@ -88,7 +91,7 @@ Okay, in that case, in your `tailwind.config.js`, set it up like this:
 module.exports = {
   captain: {
     prefix: {
-      components: false, // Default to your tailwind prefix
+      components: false, // Defaults to your tailwind prefix if false
       objects: false,
     },
     separator: {
@@ -110,12 +113,13 @@ And a sample of what to expect from the classes that will be produced are:
 .wrapper-edge: {}
 .wrapper-edge-left: {}
 
-.cluster: {}
-.cluster--sm: {}
-
 .layout: {}
 .layout-gap-8: {}
 .layout__item: {}
+
+.skip-link: {}
+
+.font-bold: {}
 ```
 
 > If you're interested in learning more about CubeCSS, check out 

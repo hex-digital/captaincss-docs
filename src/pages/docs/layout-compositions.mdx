@@ -40,9 +40,7 @@ a layout that could be generalised into a composition.
 
 ## What are compositions?
 
-A brief intermission to talk about compositions, or layout objects.
-
-Layout objects are the reusable abstractions of repetitive, shared and purely structural aspects of UI. This means things
+Compositions, or Layout objects, are the reusable abstractions of repetitive, shared and purely structural aspects of UI. This means things
 like wrappers, containers, stacks, clusters, etc.
 
 **"It allows them to exist as non-cosmetic styles that handle the skeletal aspect of a lot of UI components, without ever actually
@@ -69,7 +67,7 @@ horizontally and vertically with no headaches, everytime.
 
 ```html lightBlue
 <div class="cluster">
-  <div> <!-- Required until  -->
+  <div> <!-- Extra div required unless using { support: { cssFlexGap } } -->
     <button>Act Now</button>
     <button>Do something else</button>
   </div>
