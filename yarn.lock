@@ -1330,11 +1330,12 @@
   integrity sha512-71I3n/S8x9a/KW8JMboNRlDz0TLOI0YEjBjw3OxrwSzoJ9EZd46eaS5IIKn9XfBouJB3Kquzih/KrlvZtj2w/Q==
 
 "@captaincss/captaincss@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@captaincss/captaincss/-/captaincss-2.0.0.tgz#54b2ea33d0f7f73c27e63a346c23ffea48f31711"
-  integrity sha512-MNaocww8yqPB3saIJ/5uUtIqscJ2vpDFGfODhmUF/+me66FPAXeOOCZXoe1WT/YIGx5Cn+F0cPUbVkoaJgOsTA==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@captaincss/captaincss/-/captaincss-2.3.0.tgz#1247d4a67ec9266a1b0e643385513590bae334e2"
+  integrity sha512-MkPYc8cqQLGxjeixy0G3pPd59iTBmkS0rE6TUzKTJOhuIRnOfprjYrT7pH2y1ajgoLZtUx4iTj45D0W+vCczIg==
   dependencies:
     lodash "^4.17.20"
+    reduce-css-calc "^2.1.8"
 
 "@docsearch/css@^1.0.0-alpha.27":
   version "1.0.0-alpha.27"
@@ -6878,6 +6879,14 @@ reduce-css-calc@^2.1.6:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/reduce-css-calc/-/reduce-css-calc-2.1.7.tgz"
   integrity sha512-fDnlZ+AybAS3C7Q9xDq5y8A2z+lT63zLbynew/lur/IR24OQF5x98tfNwf79mzEdfywZ0a2wpM860FhFfMxZlA==
+  dependencies:
+    css-unit-converter "^1.1.1"
+    postcss-value-parser "^3.3.0"
+
+reduce-css-calc@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/reduce-css-calc/-/reduce-css-calc-2.1.8.tgz#7ef8761a28d614980dc0c982f772c93f7a99de03"
+  integrity sha512-8liAVezDmUcH+tdzoEGrhfbGcP7nOV4NkGE3a74+qqvE7nt9i4sKLGBuZNOnpI4WiGksiNPklZxva80061QiPg==
   dependencies:
     css-unit-converter "^1.1.1"
     postcss-value-parser "^3.3.0"
