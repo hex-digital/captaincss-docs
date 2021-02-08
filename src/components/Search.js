@@ -109,8 +109,8 @@ export function Search() {
               distinct: 1,
             }}
             onClose={onClose}
-            indexName="tailwindcss"
-            apiKey="3df93446658cd9c4e314d4c02a052188"
+            indexName="hexdigital"
+            apiKey="a5c7e829dcd536951fc1544ec29bbcda"
             appId="BH4D9OD16A"
             navigator={{
               navigate({ suggestionUrl }) {
