@@ -52,6 +52,13 @@ const whatsNew = [
 
 const latestUpdates = [
   {
+    title: 'CaptainCSS documentation improved and bugs fixed',
+    date: '2021-10-26T21:58:00.000Z',
+    url: 'https://github.com/hex-digital/captaincss/releases',
+    description:
+      `Release 2.3.1 brings with it some missing documentation for some objects, and some bug fixes for the cluster default spacing.`,
+  },
+  {
     title: 'CaptainCSS documentation is released',
     date: '2020-12-23T09:00:00.000Z',
     url: 'https://captaincss.hexdigital.com',

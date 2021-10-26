@@ -27,6 +27,7 @@ export const documentationNav = {
     pages['separators'],
   ],
   Layout: [
+    pages['layout'],
     pages['cluster'],
     pages['stack'],
     pages['frame'],
