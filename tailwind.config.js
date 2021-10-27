@@ -161,6 +161,7 @@ module.exports = {
       },
       spacing: {
         18: '4.5rem',
+        41: '10.25rem',
         88: '22rem',
         '15px': '0.9375rem',
         '23px': '1.4375rem',
@@ -271,7 +272,6 @@ module.exports = {
 
       addUtilities(utilities)
     },
-    require('@captaincss/captaincss'),
     function ({addUtilities, config, theme, e}) {
 
       const screens = theme('activeBreakpoint.screens');
@@ -327,6 +327,7 @@ module.exports = {
 
       addUtilities(components);
     },
+    require('@captaincss/captaincss'),
 
   ],
 }
