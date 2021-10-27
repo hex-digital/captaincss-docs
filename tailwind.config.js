@@ -226,6 +226,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@captaincss/captaincss'),
     require('@tailwindcss/typography'),
     function ({addUtilities, theme}) {
       const shadows = theme('boxShadow')
@@ -327,7 +328,6 @@ module.exports = {
 
       addUtilities(components);
     },
-    require('@captaincss/captaincss'),
 
   ],
 }
